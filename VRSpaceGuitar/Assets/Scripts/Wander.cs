@@ -58,9 +58,8 @@ public class Wander : SteeringBehaviour
         return force;
     }
 
-    public void OnCollisionEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collision Triggered");
         //if object has tab Food destroy object
         if (other.gameObject.CompareTag(foodTag))
         {
