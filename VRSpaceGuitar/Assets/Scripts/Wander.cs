@@ -13,6 +13,8 @@ public class Wander : SteeringBehaviour
     private Vector3 wanderTarget;
     public Seek seek;
     public ObstacleAvoidance obstacleAvoidance;
+    // Dictionary to store body parts
+    private Dictionary<string, int> bodyParts = new Dictionary<string, int>();
 
     void Start()
     {
@@ -58,12 +60,40 @@ public class Wander : SteeringBehaviour
         return force;
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        //if object has tab Food destroy object
-        if (other.gameObject.CompareTag(foodTag))
+        if (other.CompareTag("Food"))
         {
+            Food foodComponent = other.GetComponent<Food>();
+            if (foodComponent != null)
+            {
+                foreach (string bodyPart in foodComponent.bodyParts)
+                {
+                    if (bodyParts.ContainsKey(bodyPart))
+                    {
+                        bodyParts[bodyPart]++;
+                    }
+                    else
+                    {
+                        bodyParts.Add(bodyPart, 1);
+                    }
+
+                    // Check if there are 4 of any one type of body part
+                    if (bodyParts[bodyPart] >= 4)
+                    {
+                        FourBodyParts(bodyPart);
+                    }
+                }
+            }
+
+            // Eat the food (destroy the food object)
             Destroy(other.gameObject);
         }
+    }
+
+    private void FourBodyParts(string bodyPart)
+    {
+        // Perform your desired action when there are 4 of any one type of body part
+        Debug.Log("4 of the same body parts: " + bodyPart);
     }
 }
