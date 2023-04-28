@@ -14,6 +14,8 @@ public class Wander : SteeringBehaviour
     public Seek seek;
     public ObstacleAvoidance obstacleAvoidance;
     private Dictionary<string, List<GameObject>> collectedBodyParts = new Dictionary<string, List<GameObject>>();
+    public Transform bodyPartContainer; // The container for attached body parts
+
 
 
     void Start()
@@ -101,6 +103,21 @@ public class Wander : SteeringBehaviour
         {
             // Implement your logic when there are 4 of any one type of body part
             Debug.Log("4 " + bodyPart + " collected");
+
+            // Attach the body part to the creature
+            AttachBodyPart(bodyPart, prefab);
         }
+    }
+
+    void AttachBodyPart(string bodyPart, GameObject prefab)
+    {
+        // Instantiate the body part
+        GameObject newBodyPart = Instantiate(prefab, bodyPartContainer);
+
+        // Adjust the position and rotation of the body part
+        newBodyPart.transform.localPosition = Vector3.zero;
+        newBodyPart.transform.localRotation = Quaternion.identity;
+
+        // Add any additional logic to connect the body part to the creature
     }
 }
