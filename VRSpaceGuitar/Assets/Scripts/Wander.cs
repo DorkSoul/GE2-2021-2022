@@ -5,27 +5,17 @@ using UnityEngine;
 public class Wander : SteeringBehaviour
 {
     public string foodTag = "Food";
-    public float circleDistance = 10f;
-    public float circleRadius = 5f;
+    public float circleDistance = 20f;
+    public float circleRadius = 10f;
     public float wanderJitter = 1f;
     public float wanderForce = 1f;
 
     private Vector3 wanderTarget;
     public Seek seek;
     public ObstacleAvoidance obstacleAvoidance;
-<<<<<<< Updated upstream
-
-=======
     private Dictionary<string, List<GameObject>> collectedBodyParts = new Dictionary<string, List<GameObject>>();
     public Transform bodyPartContainer; // The container for attached body parts
-    public AudioSource Player;
 
-    public GameObject oldBodyHead;
-    public GameObject oldBodyChest;
-    public GameObject oldBodyArms;
-    public GameObject oldBodyLegs;
-    public GameObject CharContainer;
->>>>>>> Stashed changes
     void Start()
     {
         wanderTarget = Random.insideUnitSphere * circleRadius;
@@ -60,6 +50,10 @@ public class Wander : SteeringBehaviour
             wanderTarget.Normalize();
             wanderTarget *= circleRadius;
 
+            // Constrain wanderTarget within the desired range (-20 to 20)
+            wanderTarget.x = Mathf.Clamp(wanderTarget.x, -20, 20);
+            wanderTarget.z = Mathf.Clamp(wanderTarget.z, -20, 20);
+
             force = circleCenter + wanderTarget;
             force *= this.wanderForce;
         }
@@ -70,17 +64,32 @@ public class Wander : SteeringBehaviour
         return force;
     }
 
-    public void OnCollisionEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collision Triggered");
-        //if object has tab Food destroy object
-        if (other.gameObject.CompareTag(foodTag))
+        if (other.gameObject.CompareTag("Food"))
         {
-            Destroy(other.gameObject);
+            Food foodScript = other.gameObject.GetComponent<Food>();
+            if (foodScript != null)
+            {
+                Dictionary<string, List<int>> bodyParts = foodScript.GetBodyParts();
+
+                // Select a random body part type (Legs, Head, Arms, or Chest)
+                List<string> bodyPartTypes = new List<string>(bodyParts.Keys);
+                int randomBodyPartTypeIndex = Random.Range(0, bodyPartTypes.Count);
+                string randomBodyPartType = bodyPartTypes[randomBodyPartTypeIndex];
+
+                List<GameObject> prefabs = foodScript.GetBodyPartPrefabs(randomBodyPartType);
+
+                // Select a random prefab from the prefabs list
+                int randomIndex = Random.Range(0, prefabs.Count);
+                GameObject randomPrefab = prefabs[randomIndex];
+
+                EatFood(randomBodyPartType, randomPrefab);
+
+                Destroy(other.gameObject);
+            }
         }
     }
-<<<<<<< Updated upstream
-=======
 
     void EatFood(string bodyPart, GameObject prefab)
     {
@@ -106,69 +115,13 @@ public class Wander : SteeringBehaviour
 
     void AttachBodyPart(string bodyPart, GameObject prefab)
     {
-        // Find body parts using tags
-        oldBodyHead = GameObject.Find("head");
-        oldBodyChest = GameObject.FindWithTag("Chest");
-        oldBodyArms = GameObject.FindWithTag("Arms");
-        oldBodyLegs = GameObject.FindWithTag("Legs");
-    
-        // Insantiate new body part using prefab
+        // Instantiate the body part
         GameObject newBodyPart = Instantiate(prefab, bodyPartContainer);
 
-        // find new body part with tags transform the position of new body part and destroy the old
-        if (newBodyPart.tag == "head")
-        {
-            
-            newBodyPart.transform.localPosition = oldBodyHead.transform.position;
+        // Adjust the position and rotation of the body part
+        newBodyPart.transform.localPosition = Vector3.zero;
+        newBodyPart.transform.localRotation = Quaternion.identity;
 
-            // Set Parent to the container box
-            newBodyPart.transform.SetParent(CharContainer.transform);
-            
-            // Set the right look rotation
-            newBodyPart.transform.localRotation = Quaternion.identity;  
-
-            Player = newBodyPart.GetComponent<AudioSource>();
-            playChord();
-            Destroy(oldBodyHead); 
-        }
-        if (newBodyPart.tag == "Chest")
-        {
-            newBodyPart.transform.localPosition = oldBodyChest.transform.position;
-
-            // Set Parent to the container box
-            newBodyPart.transform.SetParent(CharContainer.transform);
-            // Set the right look rotation
-            newBodyPart.transform.localRotation = Quaternion.identity;            
-            Destroy(oldBodyChest);
-        }
-        if (newBodyPart.tag == "Arms")
-        {
-            newBodyPart.transform.localPosition = oldBodyArms.transform.position;
-
-            // Set Parent to the container box
-            newBodyPart.transform.SetParent(CharContainer.transform);
-            // Set the right look rotation
-            newBodyPart.transform.localRotation = Quaternion.identity;
-            Destroy(oldBodyArms);
-        }
-        if (newBodyPart.tag == "Legs")
-        {
-            newBodyPart.transform.localPosition = oldBodyLegs.transform.position;
-
-            // Set Parent to the container box
-            newBodyPart.transform.SetParent(CharContainer.transform);
-            // Set the right look rotation
-            newBodyPart.transform.localRotation = Quaternion.identity;
-            Destroy(oldBodyLegs);
-        }
-
-
-
+        // Add any additional logic to connect the body part to the creature
     }
-
-    public void playChord()
-    {
-        Player.Play();
-    }
->>>>>>> Stashed changes
 }
