@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class ObstacleAvoidance : SteeringBehaviour
 {
-    public string excludedTag = "Food";
     public float scale = 4.0f;
     public float forwardFeelerDepth = 30;
     public float sideFeelerDepth = 15;
@@ -114,35 +113,36 @@ public class ObstacleAvoidance : SteeringBehaviour
     
 
     Vector3 CalculateSceneAvoidanceForce(FeelerInfo info)
+{
+    Vector3 force = Vector3.zero;
+
+    // Return zero force if the collided object has the excluded tag or "Body" tag
+    if (info.collider != null && (info.collider.CompareTag("Food") || info.collider.CompareTag("Body")))
     {
-        Vector3 force = Vector3.zero;
-
-        if (info.collider != null && info.collider.CompareTag(excludedTag))
-        {
-            return force; // Return zero force if the collided object has the excluded tag
-        }
-
-        Vector3 fromTarget = fromTarget = transform.position - info.point;
-        float dist = Vector3.Distance(transform.position, info.point);
-
-        switch (forceType)
-        {
-            case ForceType.normal:
-                force = info.normal * (forwardFeelerDepth * scale / dist);
-                break;
-            case ForceType.incident:
-                fromTarget.Normalize();
-                force -= Vector3.Reflect(fromTarget, info.normal) * (forwardFeelerDepth / dist);
-                break;
-            case ForceType.up:
-                force += Vector3.up * (forwardFeelerDepth * scale / dist);
-                break;
-            case ForceType.braking:
-                force += fromTarget * (forwardFeelerDepth / dist);
-                break;
-        }
         return force;
     }
+
+    Vector3 fromTarget = fromTarget = transform.position - info.point;
+    float dist = Vector3.Distance(transform.position, info.point);
+
+    switch (forceType)
+    {
+        case ForceType.normal:
+            force = info.normal * (forwardFeelerDepth * scale / dist);
+            break;
+        case ForceType.incident:
+            fromTarget.Normalize();
+            force -= Vector3.Reflect(fromTarget, info.normal) * (forwardFeelerDepth / dist);
+            break;
+        case ForceType.up:
+            force += Vector3.up * (forwardFeelerDepth * scale / dist);
+            break;
+        case ForceType.braking:
+            force += fromTarget * (forwardFeelerDepth / dist);
+            break;
+    }
+    return force;
+}
     
     struct FeelerInfo
     {

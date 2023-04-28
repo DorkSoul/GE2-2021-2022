@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8040256356961988279}
   - component: {fileID: 200018765767826595}
   - component: {fileID: 5416529337223374733}
-  - component: {fileID: 3479524579436556502}
+  - component: {fileID: -114499595615983508}
   m_Layer: 0
   m_Name: Food1
   m_TagString: Food
@@ -116,7 +116,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3479524579436556502
+--- !u!114 &-114499595615983508
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,6 +128,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b7b38ed8d2141c439c6a173ecfbc84d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LegsPrefab:
+  - {fileID: 5827755951830916981, guid: 19aec4d18f0fe334c9393595b3854aa7, type: 3}
+  - {fileID: 2280372519295220252, guid: c0018ccccd7c0c848a4e31f7cbbc5aa1, type: 3}
+  - {fileID: 2280372519295220252, guid: f2eb64cc946dc204a9c5197e75260cc4, type: 3}
+  - {fileID: 2280372519295220252, guid: 1fad5dcb414d8904cab446480243ece6, type: 3}
+  - {fileID: 5827755951830916981, guid: 56ada65effbf0ee459ee1a5fd6963c4e, type: 3}
+  - {fileID: 5827755951830916981, guid: f69b50de50ca102449ee569851de4d1e, type: 3}
+  - {fileID: 5827755951830916981, guid: 96a967e824999fb4f94b845a2f580197, type: 3}
+  HeadPrefab:
+  - {fileID: 1689453748520690865, guid: 35d1f3b457e491d43a29d0d8de87541e, type: 3}
+  - {fileID: 2750830034774319284, guid: 7cefb7d04f0544b44b4c1eb0a1dba6ea, type: 3}
+  - {fileID: 4818613476363433382, guid: 52c5aab1bfe6f284ebf256112c34325f, type: 3}
+  ArmsPrefab:
+  - {fileID: 5678423825671134956, guid: eef4deb2e6dc1954d8e979db725326da, type: 3}
+  - {fileID: 5678423825671134956, guid: 4838950d071af3c40b7e33c6353a0191, type: 3}
+  - {fileID: 5678423825671134956, guid: 949de5593e8ec534fa29ea870eee6dc7, type: 3}
+  - {fileID: 5678423825671134956, guid: b36274194a9b1c34dbace6fa202021cb, type: 3}
+  - {fileID: 5678423825671134956, guid: 1f49ef8d0d52c064ea04e843830e0bf5, type: 3}
+  - {fileID: 5678423825671134956, guid: 3b4a9d7f2398ff34c91344119abf5b91, type: 3}
+  ChestPrefab:
+  - {fileID: 7052187582962208608, guid: 3bfaa5723af6384419699f9b2caf23a0, type: 3}
+  - {fileID: 7052187582962208608, guid: ff88835dd136c7f49a8ec6a0da42efb9, type: 3}
+  - {fileID: 7052187582962208608, guid: 27b4348166044ff4b921910c6d8057a5, type: 3}
+  - {fileID: 1485089677921388130, guid: 3b8f77731c9b2f54690c494c5606d99c, type: 3}
 --- !u!1 &3497689045819123479
 GameObject:
   m_ObjectHideFlags: 0

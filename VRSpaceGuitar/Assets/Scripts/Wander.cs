@@ -13,8 +13,8 @@ public class Wander : SteeringBehaviour
     private Vector3 wanderTarget;
     public Seek seek;
     public ObstacleAvoidance obstacleAvoidance;
-    // Dictionary to store body parts
-    private Dictionary<string, int> bodyParts = new Dictionary<string, int>();
+    private Dictionary<string, List<GameObject>> collectedBodyParts = new Dictionary<string, List<GameObject>>();
+
 
     void Start()
     {
@@ -60,40 +60,47 @@ public class Wander : SteeringBehaviour
         return force;
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Food"))
+        if (other.gameObject.CompareTag("Food"))
         {
-            Food foodComponent = other.GetComponent<Food>();
-            if (foodComponent != null)
+            Food foodScript = other.gameObject.GetComponent<Food>();
+            if (foodScript != null)
             {
-                foreach (string bodyPart in foodComponent.bodyParts)
-                {
-                    if (bodyParts.ContainsKey(bodyPart))
-                    {
-                        bodyParts[bodyPart]++;
-                    }
-                    else
-                    {
-                        bodyParts.Add(bodyPart, 1);
-                    }
+                Dictionary<string, List<int>> bodyParts = foodScript.GetBodyParts();
 
-                    // Check if there are 4 of any one type of body part
-                    if (bodyParts[bodyPart] >= 4)
-                    {
-                        FourBodyParts(bodyPart);
-                    }
-                }
+                // Select a random body part type (Legs, Head, Arms, or Chest)
+                List<string> bodyPartTypes = new List<string>(bodyParts.Keys);
+                int randomBodyPartTypeIndex = Random.Range(0, bodyPartTypes.Count);
+                string randomBodyPartType = bodyPartTypes[randomBodyPartTypeIndex];
+
+                List<GameObject> prefabs = foodScript.GetBodyPartPrefabs(randomBodyPartType);
+
+                // Select a random prefab from the prefabs list
+                int randomIndex = Random.Range(0, prefabs.Count);
+                GameObject randomPrefab = prefabs[randomIndex];
+
+                EatFood(randomBodyPartType, randomPrefab);
+
+                Destroy(other.gameObject);
             }
-
-            // Eat the food (destroy the food object)
-            Destroy(other.gameObject);
         }
     }
 
-    private void FourBodyParts(string bodyPart)
+    void EatFood(string bodyPart, GameObject prefab)
     {
-        // Perform your desired action when there are 4 of any one type of body part
-        Debug.Log("4 of the same body parts: " + bodyPart);
+        if (!collectedBodyParts.ContainsKey(bodyPart))
+        {
+            collectedBodyParts.Add(bodyPart, new List<GameObject>());
+        }
+
+        collectedBodyParts[bodyPart].Add(prefab);
+
+        // Check if there are 4 of any one type of body part
+        if (collectedBodyParts[bodyPart].Count >= 4)
+        {
+            // Implement your logic when there are 4 of any one type of body part
+            Debug.Log("4 " + bodyPart + " collected");
+        }
     }
 }

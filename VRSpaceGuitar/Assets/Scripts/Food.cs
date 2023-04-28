@@ -4,57 +4,127 @@ using UnityEngine;
 
 public class Food : MonoBehaviour
 {
-    public string foodType;
-    public List<string> bodyParts = new List<string>();
+    [Header("Body Part Prefabs")]
+    public GameObject[] LegsPrefab;
+    public GameObject[] HeadPrefab;
+    public GameObject[] ArmsPrefab;
+    public GameObject[] ChestPrefab;
 
-    void Awake()
+    private string foodType;
+    private Dictionary<string, List<int>> bodyParts = new Dictionary<string, List<int>>();
+
+    private void Start()
     {
         foodType = gameObject.name;
-    }
-    void Start()
-    {
         AssignBodyParts();
     }
 
-    void AssignBodyParts()
+void AssignBodyParts()
+{
+    // Conditions for Food1 - Food8
+    if (foodType.Contains("Food1"))
     {
-        if (foodType.Contains("Food1"))
+        bodyParts.Add("Legs", new List<int> { 0, 1 });
+        bodyParts.Add("Head", new List<int> { 0 });
+        bodyParts.Add("Arms", new List<int> { 0, 1 });
+        bodyParts.Add("Chest", new List<int> { 0 });
+    }
+    else if (foodType.Contains("Food2"))
+    {
+        bodyParts.Add("Legs", new List<int> { 2, 3 });
+        bodyParts.Add("Head", new List<int> { 1 });
+        bodyParts.Add("Arms", new List<int> { 2, 3 });
+        bodyParts.Add("Chest", new List<int> { 1 });
+    }
+    else if (foodType.Contains("Food3"))
+    {
+        bodyParts.Add("Legs", new List<int> { 4, 5 });
+        bodyParts.Add("Head", new List<int> { 2 });
+        bodyParts.Add("Arms", new List<int> { 4, 5 });
+        bodyParts.Add("Chest", new List<int> { 2 });
+    }
+    else if (foodType.Contains("Food4"))
+    {
+        bodyParts.Add("Legs", new List<int> { 6 });
+        bodyParts.Add("Head", new List<int> { 1 });
+        bodyParts.Add("Arms", new List<int> { 0, 1, 2, 3, 4, 5 }); 
+        bodyParts.Add("Chest", new List<int> { 3 });
+    }
+    else if (foodType.Contains("Food5"))
+    {
+        bodyParts.Add("Legs", new List<int> { 1, 3, 5 }); 
+        bodyParts.Add("Head", new List<int> { 0, 1, 2 }); 
+        bodyParts.Add("Arms", new List<int> { 2, 4 }); 
+        bodyParts.Add("Chest", new List<int> { 0, 1, 2, 3 }); 
+    }
+    else if (foodType.Contains("Food6"))
+    {
+        bodyParts.Add("Legs", new List<int> { 0, 2, 4, 6 }); 
+        bodyParts.Add("Head", new List<int> { 0, 1 }); 
+        bodyParts.Add("Arms", new List<int> { 1, 3, 5 }); 
+        bodyParts.Add("Chest", new List<int> { 1, 3 }); 
+    }
+    else if (foodType.Contains("Food7"))
+    {
+        bodyParts.Add("Legs", new List<int> { 1, 3, 5, 7 }); 
+        bodyParts.Add("Head", new List<int> { 2 }); 
+        bodyParts.Add("Arms", new List<int> { 0, 2, 4 }); 
+        bodyParts.Add("Chest", new List<int> { 0, 2 }); 
+    }
+    else if (foodType.Contains("Food8"))
+    {
+        bodyParts.Add("Legs", new List<int> { 0, 2, 4, 6 }); 
+        bodyParts.Add("Head", new List<int> { 1, 2 }); 
+        bodyParts.Add("Arms", new List<int> { 1, 3, 5 }); 
+        bodyParts.Add("Chest", new List<int> { 1, 3 }); 
+    }
+}
+
+    public List<GameObject> GetBodyPartPrefabs(string bodyPart)
+    {
+        if (bodyParts.ContainsKey(bodyPart))
         {
-            bodyParts.AddRange(new string[] { "Ribs", "PartB", "PartC", "PartD", "PartE" });
+            List<int> indices = bodyParts[bodyPart];
+            List<GameObject> prefabs = new List<GameObject>();
+
+            switch (bodyPart)
+            {
+                case "Legs":
+                    foreach (int index in indices)
+                    {
+                        prefabs.Add(LegsPrefab[index]);
+                    }
+                    break;
+                case "Head":
+                    foreach (int index in indices)
+                    {
+                        prefabs.Add(HeadPrefab[index]);
+                    }
+                    break;
+                case "Arms":
+                    foreach (int index in indices)
+                    {
+                        prefabs.Add(ArmsPrefab[index]);
+                    }
+                    break;
+                case "Chest":
+                    foreach (int index in indices)
+                    {
+                        prefabs.Add(ChestPrefab[index]);
+                    }
+                    break;
+            }
+
+            return prefabs;
         }
-        else if (foodType.Contains("Food2"))
+        else
         {
-            bodyParts.AddRange(new string[] { "Ribs 1", "PartG", "PartH", "PartI", "PartJ" });
-        }
-        else if (foodType.Contains("Food3"))
-        {
-            bodyParts.AddRange(new string[] { "Ribs 2", "PartL", "PartM", "PartN", "PartO" });
-        }
-        else if (foodType.Contains("Food4"))
-        {
-            bodyParts.AddRange(new string[] { "Ribs 2", "PartQ", "PartR", "PartS", "PartT" });
-        }
-        else if (foodType.Contains("Food5"))
-        {
-            bodyParts.AddRange(new string[] { "Ribs 3", "PartV", "PartW", "PartX", "PartY" });
-        }
-        else if (foodType.Contains("Food6"))
-        {
-            bodyParts.AddRange(new string[] { "Ribs 4", "PartAA", "PartAB", "PartAC", "PartAD" });
-        }
-        else if (foodType.Contains("Food7"))
-        {
-            bodyParts.AddRange(new string[] { "Ribs 5", "PartAF", "PartAG", "PartAH", "PartAI" });
-        }
-        else if (foodType.Contains("Food8"))
-        {
-            bodyParts.AddRange(new string[] { "Ribs 5", "PartAK", "PartAL", "PartAM", "PartAN" });
+            return null;
         }
     }
 
-    // Update is called once per frame
-    void Update()
+        public Dictionary<string, List<int>> GetBodyParts()
     {
-
+        return bodyParts;
     }
 }
