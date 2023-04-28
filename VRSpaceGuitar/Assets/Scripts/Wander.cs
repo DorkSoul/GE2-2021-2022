@@ -98,14 +98,16 @@ public class Wander : SteeringBehaviour
 
         collectedBodyParts[bodyPart].Add(prefab);
 
-        // Check if there are 4 of any one type of body part
         if (collectedBodyParts[bodyPart].Count >= 4)
         {
-            // Implement your logic when there are 4 of any one type of body part
-            Debug.Log("4 " + bodyPart + " collected");
+            // Output the name of the body part being attached
+            Debug.Log("4 " + bodyPart + "s collected. Adding " + prefab.name + " to the creature.");
 
             // Attach the body part to the creature
             AttachBodyPart(bodyPart, prefab);
+
+            // Empty the collected body parts list for this body part type
+            collectedBodyParts[bodyPart].Clear();
         }
     }
 

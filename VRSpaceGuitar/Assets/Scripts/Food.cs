@@ -24,58 +24,58 @@ void AssignBodyParts()
     // Conditions for Food1 - Food8
     if (foodType.Contains("Food1"))
     {
-        bodyParts.Add("Legs", new List<int> { 0, 1 });
+        bodyParts.Add("Leg", new List<int> { 0, 1 });
         bodyParts.Add("Head", new List<int> { 0 });
-        bodyParts.Add("Arms", new List<int> { 0, 1 });
+        bodyParts.Add("Arm", new List<int> { 0, 1 });
         bodyParts.Add("Chest", new List<int> { 0 });
     }
     else if (foodType.Contains("Food2"))
     {
-        bodyParts.Add("Legs", new List<int> { 2, 3 });
+        bodyParts.Add("Leg", new List<int> { 2, 3 });
         bodyParts.Add("Head", new List<int> { 1 });
-        bodyParts.Add("Arms", new List<int> { 2, 3 });
+        bodyParts.Add("Arm", new List<int> { 2, 3 });
         bodyParts.Add("Chest", new List<int> { 1 });
     }
     else if (foodType.Contains("Food3"))
     {
-        bodyParts.Add("Legs", new List<int> { 4, 5 });
+        bodyParts.Add("Leg", new List<int> { 4, 5 });
         bodyParts.Add("Head", new List<int> { 2 });
-        bodyParts.Add("Arms", new List<int> { 4, 5 });
+        bodyParts.Add("Arm", new List<int> { 4, 5 });
         bodyParts.Add("Chest", new List<int> { 2 });
     }
     else if (foodType.Contains("Food4"))
     {
-        bodyParts.Add("Legs", new List<int> { 6 });
+        bodyParts.Add("Leg", new List<int> { 6 });
         bodyParts.Add("Head", new List<int> { 1 });
-        bodyParts.Add("Arms", new List<int> { 0, 1, 2, 3, 4, 5 }); 
+        bodyParts.Add("Arm", new List<int> { 0, 1, 2, 3, 4, 5 }); 
         bodyParts.Add("Chest", new List<int> { 3 });
     }
     else if (foodType.Contains("Food5"))
     {
-        bodyParts.Add("Legs", new List<int> { 1, 3, 5 }); 
+        bodyParts.Add("Leg", new List<int> { 1, 3, 5 }); 
         bodyParts.Add("Head", new List<int> { 0, 1, 2 }); 
-        bodyParts.Add("Arms", new List<int> { 2, 4 }); 
+        bodyParts.Add("Arm", new List<int> { 2, 4 }); 
         bodyParts.Add("Chest", new List<int> { 0, 1, 2, 3 }); 
     }
     else if (foodType.Contains("Food6"))
     {
-        bodyParts.Add("Legs", new List<int> { 0, 2, 4, 6 }); 
+        bodyParts.Add("Leg", new List<int> { 0, 2, 4, 6 }); 
         bodyParts.Add("Head", new List<int> { 0, 1 }); 
-        bodyParts.Add("Arms", new List<int> { 1, 3, 5 }); 
+        bodyParts.Add("Arm", new List<int> { 1, 3, 5 }); 
         bodyParts.Add("Chest", new List<int> { 1, 3 }); 
     }
     else if (foodType.Contains("Food7"))
     {
-        bodyParts.Add("Legs", new List<int> { 1, 3, 5, 7 }); 
+        bodyParts.Add("Leg", new List<int> { 1, 3, 5, 7 }); 
         bodyParts.Add("Head", new List<int> { 2 }); 
-        bodyParts.Add("Arms", new List<int> { 0, 2, 4 }); 
+        bodyParts.Add("Arm", new List<int> { 0, 2, 4 }); 
         bodyParts.Add("Chest", new List<int> { 0, 2 }); 
     }
     else if (foodType.Contains("Food8"))
     {
-        bodyParts.Add("Legs", new List<int> { 0, 2, 4, 6 }); 
+        bodyParts.Add("Leg", new List<int> { 0, 2, 4, 6 }); 
         bodyParts.Add("Head", new List<int> { 1, 2 }); 
-        bodyParts.Add("Arms", new List<int> { 1, 3, 5 }); 
+        bodyParts.Add("Arm", new List<int> { 1, 3, 5 }); 
         bodyParts.Add("Chest", new List<int> { 1, 3 }); 
     }
 }
@@ -89,7 +89,7 @@ void AssignBodyParts()
 
             switch (bodyPart)
             {
-                case "Legs":
+                case "Leg":
                     foreach (int index in indices)
                     {
                         prefabs.Add(LegsPrefab[index]);
@@ -101,7 +101,7 @@ void AssignBodyParts()
                         prefabs.Add(HeadPrefab[index]);
                     }
                     break;
-                case "Arms":
+                case "Arm":
                     foreach (int index in indices)
                     {
                         prefabs.Add(ArmsPrefab[index]);
