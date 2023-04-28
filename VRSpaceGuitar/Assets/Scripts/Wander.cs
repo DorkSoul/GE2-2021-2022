@@ -14,8 +14,6 @@ public class Wander : SteeringBehaviour
     public Seek seek;
     public ObstacleAvoidance obstacleAvoidance;
     private Dictionary<string, List<GameObject>> collectedBodyParts = new Dictionary<string, List<GameObject>>();
-    public Transform bodyPartContainer; // The container for attached body parts
-
     void Start()
     {
         wanderTarget = Random.insideUnitSphere * circleRadius;
@@ -115,13 +113,32 @@ public class Wander : SteeringBehaviour
 
     void AttachBodyPart(string bodyPart, GameObject prefab)
     {
-        // Instantiate the body part
-        GameObject newBodyPart = Instantiate(prefab, bodyPartContainer);
+        // Find the existing body part with the same tag
+        Transform existingBodyPart = null;
+        foreach (Transform child in transform.GetComponentsInChildren<Transform>())
+        {
+            if (child.CompareTag(bodyPart))
+            {
+                existingBodyPart = child;
+                break;
+            }
+        }
 
-        // Adjust the position and rotation of the body part
-        newBodyPart.transform.localPosition = Vector3.zero;
-        newBodyPart.transform.localRotation = Quaternion.identity;
+        if (existingBodyPart != null)
+        {
+            // Store the position, rotation, and parent of the existing body part
+            Vector3 existingBodyPartPosition = existingBodyPart.position;
+            Quaternion existingBodyPartRotation = existingBodyPart.rotation;
+            Transform existingBodyPartParent = existingBodyPart.parent;
 
-        // Add any additional logic to connect the body part to the creature
+            // Destroy the existing body part
+            Destroy(existingBodyPart.gameObject);
+
+            // Instantiate the new body part at the position and rotation of the old body part
+            GameObject newBodyPart = Instantiate(prefab, existingBodyPartPosition, existingBodyPartRotation);
+
+            // Set the new body part's parent to be the same as the old body part
+            newBodyPart.transform.SetParent(existingBodyPartParent);
+        }
     }
 }

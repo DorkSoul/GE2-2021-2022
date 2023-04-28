@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Head
+  - Chest
+  - Food
+  - Arm
+  - Leg
+  - Arms
   layers:
   - Default
   - TransparentFX

@@ -152,3 +152,7 @@ MonoBehaviour:
   - {fileID: 7052187582962208608, guid: ff88835dd136c7f49a8ec6a0da42efb9, type: 3}
   - {fileID: 7052187582962208608, guid: 27b4348166044ff4b921910c6d8057a5, type: 3}
   - {fileID: 1485089677921388130, guid: 3b8f77731c9b2f54690c494c5606d99c, type: 3}
+  hoverHeight: 2
+  rotationSpeed: 10
+  hoverAmplitude: 0.5
+  hoverFrequency: 1
