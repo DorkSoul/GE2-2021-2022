@@ -17,31 +17,35 @@ public class SpawnerScript : MonoBehaviour
     public GameObject CharContainer;
     // Start is called before the first frame update
     void Start()
-    { 
-        var NumSelect= 0;
-        NumSelect  = Random.Range(0, 9);
-        for(int i=0;i<3;i++)
+    {
+        var NumSelect = 0;
+        NumSelect = Random.Range(0, 9);
+        for (int i = 0; i < 3; i++)
         {
             SpawnCharacter();
         }
     }
     public void SpawnCharacter()
     {
-            CharContainer = (GameObject)Instantiate(CharContainer);
-            CharLegs = (GameObject)Instantiate(LegsPrefab[1]);
-            CharHead = (GameObject)Instantiate(HeadPrefab[1]);
-            CharArms = (GameObject)Instantiate(ArmsPrefab[1]);
-            CharChest = (GameObject)Instantiate(ChestPrefab[1]);
-            
-            CharContainer.transform.SetParent(CharContainer.transform);
-            CharLegs.transform.SetParent(CharContainer.transform);
-            CharHead.transform.SetParent(CharContainer.transform);
-            CharArms.transform.SetParent(CharContainer.transform);
-            CharChest.transform.SetParent(CharContainer.transform);
+        GameObject newCharContainer = (GameObject)Instantiate(CharContainer);
+        CharLegs = (GameObject)Instantiate(LegsPrefab[1]);
+        CharHead = (GameObject)Instantiate(HeadPrefab[1]);
+        CharArms = (GameObject)Instantiate(ArmsPrefab[1]);
+        CharChest = (GameObject)Instantiate(ChestPrefab[1]);
+
+        CharLegs.transform.SetParent(newCharContainer.transform);
+        CharHead.transform.SetParent(newCharContainer.transform);
+        CharArms.transform.SetParent(newCharContainer.transform);
+        CharChest.transform.SetParent(newCharContainer.transform);
+
+        // Set the position of the character container object
+        float xPos = Random.Range(-10f, 10f);
+        float zPos = Random.Range(-10f, 10f);
+        newCharContainer.transform.position = new Vector3(xPos, 0f, zPos);
     }
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

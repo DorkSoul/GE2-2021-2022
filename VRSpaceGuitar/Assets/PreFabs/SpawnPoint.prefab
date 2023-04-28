@@ -79,7 +79,6 @@ MonoBehaviour:
   wanderForce: 1
   seek: {fileID: 0}
   obstacleAvoidance: {fileID: 0}
-  bodyPartContainer: {fileID: 0}
 --- !u!114 &2674562065260924327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,11 +112,11 @@ MonoBehaviour:
   weight: 1
   force: {x: 0, y: 0, z: 0}
   boid: {fileID: 0}
-  scale: 4
-  forwardFeelerDepth: 30
-  sideFeelerDepth: 15
-  frontFeelerUpdatesPerSecond: 10
-  sideFeelerUpdatesPerSecond: 5
+  scale: 2
+  forwardFeelerDepth: 2
+  sideFeelerDepth: 2
+  frontFeelerUpdatesPerSecond: 2
+  sideFeelerUpdatesPerSecond: 52
   feelerRadius: 2
   forceType: 0
   mask:
