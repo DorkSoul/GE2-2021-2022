@@ -14,15 +14,6 @@ public class Wander : SteeringBehaviour
     public Seek seek;
     public ObstacleAvoidance obstacleAvoidance;
     private Dictionary<string, List<GameObject>> collectedBodyParts = new Dictionary<string, List<GameObject>>();
-    public Transform bodyPartContainer; // The container for attached body parts
-
-    public AudioSource Player;
-
-    public GameObject oldBodyHead;
-    public GameObject oldBodyChest;
-    public GameObject oldBodyArms;
-    public GameObject oldBodyLegs;
-    public GameObject CharContainer;
     void Start()
     {
         wanderTarget = Random.insideUnitSphere * circleRadius;
@@ -120,67 +111,34 @@ public class Wander : SteeringBehaviour
         }
     }
 
-void AttachBodyPart(string bodyPart, GameObject prefab)
+    void AttachBodyPart(string bodyPart, GameObject prefab)
     {
-        // Find body parts using tags
-        oldBodyHead = GameObject.Find("head");
-        oldBodyChest = GameObject.FindWithTag("Chest");
-        oldBodyArms = GameObject.FindWithTag("Arms");
-        oldBodyLegs = GameObject.FindWithTag("Legs");
-    
-        // Insantiate new body part using prefab
-        GameObject newBodyPart = Instantiate(prefab, bodyPartContainer);
-
-        // find new body part with tags transform the position of new body part and destroy the old
-        if (newBodyPart.tag == "head")
+        // Find the existing body part with the same tag
+        Transform existingBodyPart = null;
+        foreach (Transform child in transform.GetComponentsInChildren<Transform>())
         {
-            
-            newBodyPart.transform.localPosition = oldBodyHead.transform.position;
-
-            // Set Parent to the container box
-            newBodyPart.transform.SetParent(CharContainer.transform);
-            
-            // Set the right look rotation
-            newBodyPart.transform.localRotation = Quaternion.identity;  
-
-            Player = newBodyPart.GetComponent<AudioSource>();
-            playChord();
-            Destroy(oldBodyHead); 
+            if (child.CompareTag(bodyPart))
+            {
+                existingBodyPart = child;
+                break;
+            }
         }
-        if (newBodyPart.tag == "Chest")
+
+        if (existingBodyPart != null)
         {
-            newBodyPart.transform.localPosition = oldBodyChest.transform.position;
+            // Store the position, rotation, and parent of the existing body part
+            Vector3 existingBodyPartPosition = existingBodyPart.position;
+            Quaternion existingBodyPartRotation = existingBodyPart.rotation;
+            Transform existingBodyPartParent = existingBodyPart.parent;
 
-            // Set Parent to the container box
-            newBodyPart.transform.SetParent(CharContainer.transform);
-            // Set the right look rotation
-            newBodyPart.transform.localRotation = Quaternion.identity;            
-            Destroy(oldBodyChest);
+            // Destroy the existing body part
+            Destroy(existingBodyPart.gameObject);
+
+            // Instantiate the new body part at the position and rotation of the old body part
+            GameObject newBodyPart = Instantiate(prefab, existingBodyPartPosition, existingBodyPartRotation);
+
+            // Set the new body part's parent to be the same as the old body part
+            newBodyPart.transform.SetParent(existingBodyPartParent);
         }
-        if (newBodyPart.tag == "Arms")
-        {
-            newBodyPart.transform.localPosition = oldBodyArms.transform.position;
-
-            // Set Parent to the container box
-            newBodyPart.transform.SetParent(CharContainer.transform);
-            // Set the right look rotation
-            newBodyPart.transform.localRotation = Quaternion.identity;
-            Destroy(oldBodyArms);
-        }
-        if (newBodyPart.tag == "Legs")
-        {
-            newBodyPart.transform.localPosition = oldBodyLegs.transform.position;
-
-            // Set Parent to the container box
-            newBodyPart.transform.SetParent(CharContainer.transform);
-            // Set the right look rotation
-            newBodyPart.transform.localRotation = Quaternion.identity;
-            Destroy(oldBodyLegs);
-        }
-    }
-
-    public void playChord()
-    {
-        Player.Play();
     }
 }

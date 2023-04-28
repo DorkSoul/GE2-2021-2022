@@ -68,7 +68,7 @@ public class ObstacleAvoidance : SteeringBehaviour
                 force += CalculateSceneAvoidanceForce(info);
             }
         }
-        lerpedForce = Vector3.Lerp(lerpedForce,force, Time.deltaTime);
+        lerpedForce = Vector3.Lerp(lerpedForce, force, Time.deltaTime);
         return lerpedForce;
     }
 
@@ -110,40 +110,53 @@ public class ObstacleAvoidance : SteeringBehaviour
             yield return new WaitForSeconds(1.0f / sideFeelerUpdatesPerSecond);
         }
     }
-    
+
 
     Vector3 CalculateSceneAvoidanceForce(FeelerInfo info)
-{
-    Vector3 force = Vector3.zero;
-
-    // Return zero force if the collided object has the excluded tag is a child of this object
-    if (info.collider != null && (info.collider.CompareTag("Food") || info.collider.transform.IsChildOf(transform)))
     {
+        Vector3 force = Vector3.zero;
+
+        // Return zero force if the collided object is part of the creature's hierarchy
+        if (info.collider != null && (info.collider.CompareTag("Food") || IsDescendantOfCreature(info.collider.transform)))
+        {
+            return force;
+        }
+
+        Vector3 fromTarget = fromTarget = transform.position - info.point;
+        float dist = Vector3.Distance(transform.position, info.point);
+
+        switch (forceType)
+        {
+            case ForceType.normal:
+                force = info.normal * (forwardFeelerDepth * scale / dist);
+                break;
+            case ForceType.incident:
+                fromTarget.Normalize();
+                force -= Vector3.Reflect(fromTarget, info.normal) * (forwardFeelerDepth / dist);
+                break;
+            case ForceType.up:
+                force += Vector3.up * (forwardFeelerDepth * scale / dist);
+                break;
+            case ForceType.braking:
+                force += fromTarget * (forwardFeelerDepth / dist);
+                break;
+        }
         return force;
     }
 
-    Vector3 fromTarget = fromTarget = transform.position - info.point;
-    float dist = Vector3.Distance(transform.position, info.point);
-
-    switch (forceType)
+    bool IsDescendantOfCreature(Transform t)
     {
-        case ForceType.normal:
-            force = info.normal * (forwardFeelerDepth * scale / dist);
-            break;
-        case ForceType.incident:
-            fromTarget.Normalize();
-            force -= Vector3.Reflect(fromTarget, info.normal) * (forwardFeelerDepth / dist);
-            break;
-        case ForceType.up:
-            force += Vector3.up * (forwardFeelerDepth * scale / dist);
-            break;
-        case ForceType.braking:
-            force += fromTarget * (forwardFeelerDepth / dist);
-            break;
+        if (t == null)
+        {
+            return false;
+        }
+        if (t == transform)
+        {
+            return true;
+        }
+        return IsDescendantOfCreature(t.parent);
     }
-    return force;
-}
-    
+
     struct FeelerInfo
     {
         public Vector3 point;

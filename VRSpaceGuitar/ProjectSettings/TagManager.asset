@@ -4,12 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Body
-  - Food
-  - Arms
   - Head
   - Chest
-  - Legs
+  - Food
+  - Arm
+  - Leg
+  - Arms
   layers:
   - Default
   - TransparentFX

@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 3002876251846488582}
   m_Layer: 0
   m_Name: Ribs 5
-  m_TagString: Arms
+  m_TagString: Arm
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

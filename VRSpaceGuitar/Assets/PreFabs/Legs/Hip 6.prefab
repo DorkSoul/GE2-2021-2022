@@ -900,7 +900,7 @@ GameObject:
   - component: {fileID: 6266528803593812907}
   m_Layer: 0
   m_Name: Hip 6
-  m_TagString: Legs
+  m_TagString: Leg
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
