@@ -5,8 +5,8 @@ using UnityEngine;
 public class Wander : SteeringBehaviour
 {
     public string foodTag = "Food";
-    public float circleDistance = 10f;
-    public float circleRadius = 5f;
+    public float circleDistance = 20f;
+    public float circleRadius = 10f;
     public float wanderJitter = 1f;
     public float wanderForce = 1f;
 
@@ -15,8 +15,6 @@ public class Wander : SteeringBehaviour
     public ObstacleAvoidance obstacleAvoidance;
     private Dictionary<string, List<GameObject>> collectedBodyParts = new Dictionary<string, List<GameObject>>();
     public Transform bodyPartContainer; // The container for attached body parts
-
-
 
     void Start()
     {
@@ -51,6 +49,10 @@ public class Wander : SteeringBehaviour
 
             wanderTarget.Normalize();
             wanderTarget *= circleRadius;
+
+            // Constrain wanderTarget within the desired range (-20 to 20)
+            wanderTarget.x = Mathf.Clamp(wanderTarget.x, -20, 20);
+            wanderTarget.z = Mathf.Clamp(wanderTarget.z, -20, 20);
 
             force = circleCenter + wanderTarget;
             force *= this.wanderForce;

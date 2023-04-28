@@ -116,8 +116,8 @@ public class ObstacleAvoidance : SteeringBehaviour
 {
     Vector3 force = Vector3.zero;
 
-    // Return zero force if the collided object has the excluded tag or "Body" tag
-    if (info.collider != null && (info.collider.CompareTag("Food") || info.collider.CompareTag("Body")))
+    // Return zero force if the collided object has the excluded tag is a child of this object
+    if (info.collider != null && (info.collider.CompareTag("Food") || info.collider.transform.IsChildOf(transform)))
     {
         return force;
     }
