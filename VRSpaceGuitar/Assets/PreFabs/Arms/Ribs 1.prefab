@@ -596,6 +596,7 @@ GameObject:
   - component: {fileID: 7769474532996160772}
   - component: {fileID: 9018659133049535686}
   - component: {fileID: 3002876251846488582}
+  - component: {fileID: 5788632297076255179}
   m_Layer: 0
   m_Name: Ribs 1
   m_TagString: Arm
@@ -683,6 +684,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &5788632297076255179
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5678423825671134956}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 65e22526364472f44bc1b185bf01a14f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5805046971787920918
 GameObject:
   m_ObjectHideFlags: 0

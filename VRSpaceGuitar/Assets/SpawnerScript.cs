@@ -27,17 +27,16 @@ public class SpawnerScript : MonoBehaviour
     }
     public void SpawnCharacter()
     {
-            CharContainer = (GameObject)Instantiate(CharContainer);
-            CharLegs = (GameObject)Instantiate(LegsPrefab[1]);
-            CharHead = (GameObject)Instantiate(HeadPrefab[1]);
-            CharArms = (GameObject)Instantiate(ArmsPrefab[1]);
-            CharChest = (GameObject)Instantiate(ChestPrefab[1]);
-            
-            CharContainer.transform.SetParent(CharContainer.transform);
-            CharLegs.transform.SetParent(CharContainer.transform);
-            CharHead.transform.SetParent(CharContainer.transform);
-            CharArms.transform.SetParent(CharContainer.transform);
-            CharChest.transform.SetParent(CharContainer.transform);
+        GameObject newCharContainer = (GameObject)Instantiate(CharContainer);
+        CharLegs = (GameObject)Instantiate(LegsPrefab[1]);
+        CharHead = (GameObject)Instantiate(HeadPrefab[1]);
+        CharArms = (GameObject)Instantiate(ArmsPrefab[1]);
+        CharChest = (GameObject)Instantiate(ChestPrefab[1]);
+
+        CharLegs.transform.SetParent(newCharContainer.transform);
+        CharHead.transform.SetParent(newCharContainer.transform);
+        CharArms.transform.SetParent(newCharContainer.transform);
+        CharChest.transform.SetParent(newCharContainer.transform);
     }
     // Update is called once per frame
     void Update()

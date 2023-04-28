@@ -693,6 +693,7 @@ GameObject:
   - component: {fileID: 7769474532996160772}
   - component: {fileID: 9018659133049535686}
   - component: {fileID: 3002876251846488582}
+  - component: {fileID: 3092213510727925202}
   m_Layer: 0
   m_Name: Ribs
   m_TagString: Arm
@@ -780,6 +781,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &3092213510727925202
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5678423825671134956}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2a68c834ebb8ba94d87a47bf42254f42, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8134729117810623600
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,7 +828,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8134729117810623600}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0626926, y: 0.017138282, z: -0.19608746}
+  m_LocalPosition: {x: -1.062693, y: 0.017138282, z: -0.19608746}
   m_LocalScale: {x: 1.444351, y: 0.70319194, z: 0.51083916}
   m_ConstrainProportionsScale: 0
   m_Children:
