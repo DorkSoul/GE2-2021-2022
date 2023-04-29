@@ -6853,6 +6853,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spaceship
       objectReference: {fileID: 0}
+    - target: {fileID: 3034130152905869484, guid: 1c7aeb812adef934b8a8bf723dc8d527,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3178466377840127921, guid: 1c7aeb812adef934b8a8bf723dc8d527,
         type: 3}
       propertyPath: m_RootOrder
