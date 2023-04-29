@@ -10,6 +10,7 @@ public class Wander : SteeringBehaviour
     public float wanderJitter = 1f;
     public float wanderForce = 1f;
 
+    public AudioSource Player;
     private Vector3 wanderTarget;
     public Seek seek;
     public ObstacleAvoidance obstacleAvoidance;
@@ -130,13 +131,19 @@ public class Wander : SteeringBehaviour
             Vector3 existingBodyPartPosition = existingBodyPart.position;
             Quaternion existingBodyPartRotation = existingBodyPart.rotation;
             Transform existingBodyPartParent = existingBodyPart.parent;
-
+            
             // Destroy the existing body part
             Destroy(existingBodyPart.gameObject);
 
             // Instantiate the new body part at the position and rotation of the old body part
             GameObject newBodyPart = Instantiate(prefab, existingBodyPartPosition, existingBodyPartRotation);
-
+            
+            if (newBodyPart.tag == "Head")
+            {
+                Debug.Log("hi");
+                Player = newBodyPart.GetComponent<AudioSource>();
+                playChord();
+            }
             // Set the new body part's parent to be the same as the old body part
             newBodyPart.transform.SetParent(existingBodyPartParent);
 
@@ -168,5 +175,9 @@ public class Wander : SteeringBehaviour
                 }
             }
         }
+    }
+    public void playChord()
+    {
+        Player.Play();
     }
 }

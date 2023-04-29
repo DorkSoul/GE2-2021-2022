@@ -14,15 +14,20 @@ public class SpawnerScript : MonoBehaviour
     public GameObject[] ArmsPrefab;
     public GameObject[] ChestPrefab;
 
+    public GameObject SpaceShip;
     public GameObject CharContainer;
     // Start is called before the first frame update
     void Start()
     {
         var NumSelect = 0;
-        NumSelect = Random.Range(0, 9);
-        for (int i = 0; i < 3; i++)
+        NumSelect = Random.Range(1, 9);
+        for (int i = 0; i < NumSelect; i++)
         {
             SpawnCharacter();
+        }
+        for (int i = 0; i < 9; i++)
+        {
+            SpawnSpaceship();
         }
     }
     public void SpawnCharacter()
@@ -42,6 +47,16 @@ public class SpawnerScript : MonoBehaviour
         float xPos = Random.Range(-10f, 10f);
         float zPos = Random.Range(-10f, 10f);
         newCharContainer.transform.position = new Vector3(xPos, 0f, zPos);
+    }
+
+    public void SpawnSpaceship()
+    {
+        GameObject newShipContainer = (GameObject)Instantiate(SpaceShip);
+
+        // Set the position of the character container object
+        float xPos = Random.Range(-100f, 100f);
+        float zPos = Random.Range(-100f, 100f);
+        newShipContainer.transform.position = new Vector3(xPos, 100f, zPos);
     }
     // Update is called once per frame
     void Update()
