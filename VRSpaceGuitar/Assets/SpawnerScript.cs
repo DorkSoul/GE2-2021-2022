@@ -17,10 +17,10 @@ public class SpawnerScript : MonoBehaviour
     public GameObject CharContainer;
     // Start is called before the first frame update
     void Start()
-    { 
-        var NumSelect= 0;
-        NumSelect  = Random.Range(0, 9);
-        for(int i=0;i<3;i++)
+    {
+        var NumSelect = 0;
+        NumSelect = Random.Range(0, 9);
+        for (int i = 0; i < 3; i++)
         {
             SpawnCharacter();
         }
@@ -37,10 +37,15 @@ public class SpawnerScript : MonoBehaviour
         CharHead.transform.SetParent(newCharContainer.transform);
         CharArms.transform.SetParent(newCharContainer.transform);
         CharChest.transform.SetParent(newCharContainer.transform);
+
+        // Set the position of the character container object
+        float xPos = Random.Range(-10f, 10f);
+        float zPos = Random.Range(-10f, 10f);
+        newCharContainer.transform.position = new Vector3(xPos, 0f, zPos);
     }
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

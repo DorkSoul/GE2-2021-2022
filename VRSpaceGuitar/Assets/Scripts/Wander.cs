@@ -139,6 +139,34 @@ public class Wander : SteeringBehaviour
 
             // Set the new body part's parent to be the same as the old body part
             newBodyPart.transform.SetParent(existingBodyPartParent);
+
+            // Move the new body part so that it just touches the other parts, except for the "Arm" tag
+            if (!bodyPart.Equals("Arm"))
+            {
+                Collider newBodyPartCollider = newBodyPart.GetComponent<Collider>();
+                if (newBodyPartCollider != null)
+                {
+                    Bounds newBodyPartBounds = newBodyPartCollider.bounds;
+                    float offsetY = newBodyPartBounds.extents.y;
+
+                    // Get the chest object
+                    GameObject chest = GameObject.FindGameObjectWithTag("Chest");
+                    if (chest != null)
+                    {
+                        Collider chestCollider = chest.GetComponent<Collider>();
+                        if (chestCollider != null)
+                        {
+                            Bounds chestBounds = chestCollider.bounds;
+                            float chestOffsetY = chestBounds.extents.y;
+
+                            // Calculate the new position for the new body part, making sure it's just touching the chest
+                            Vector3 newPosition = newBodyPart.transform.position;
+                            newPosition.y = chest.transform.position.y + chestOffsetY + offsetY;
+                            newBodyPart.transform.position = newPosition;
+                        }
+                    }
+                }
+            }
         }
     }
 }
