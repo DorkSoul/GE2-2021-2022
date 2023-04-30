@@ -465,6 +465,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2189179899357057361, guid: e485d893c36468a40b75f3178c6cb04e,
         type: 3}
+      propertyPath: newCreature
+      value: 
+      objectReference: {fileID: 4117180033837479640, guid: 79ce3002cd9dced45a12a2e9f405f67e,
+        type: 3}
+    - target: {fileID: -2189179899357057361, guid: e485d893c36468a40b75f3178c6cb04e,
+        type: 3}
       propertyPath: spawnCheckInterval
       value: 5
       objectReference: {fileID: 0}

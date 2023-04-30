@@ -69,46 +69,44 @@ public class Fence : MonoBehaviour
     }
 
     void CreateMixedCreature(GameObject creature1, GameObject creature2)
+{
+    Debug.Log("Creating a mixed creature");
+
+    // Instantiate the newCreature prefab
+    GameObject mixedCreature = Instantiate(newCreature, Vector3.zero, Quaternion.identity);
+    mixedCreature.name = "MixedCreature";
+
+    mixedCreature.tag = "Creature";
+    mixedCreature.layer = LayerMask.NameToLayer("Creature");
+
+    string[] bodyPartTags = { "Head", "Chest", "Arm", "Leg" };
+
+    foreach (string tag in bodyPartTags)
     {
-        Debug.Log("Creating a mixed creature");
+        GameObject bodyPart1 = FindChildWithTag(creature1, tag);
+        GameObject bodyPart2 = FindChildWithTag(creature2, tag);
 
-        // Instantiate the newCreature prefab
-        GameObject mixedCreature = Instantiate(newCreature, Vector3.zero, Quaternion.identity);
-        mixedCreature.name = "MixedCreature";
+        // Select the body part randomly
+        GameObject selectedBodyPart = (Random.Range(0, 2) == 0) ? bodyPart1 : bodyPart2;
 
-        mixedCreature.tag = "Creature";
-        mixedCreature.layer = LayerMask.NameToLayer("Creature");
-
-        string[] bodyPartTags = { "Head", "Chest", "Arm", "Leg" };
-        int i = 0;
-
-        foreach (string tag in bodyPartTags)
+        if (selectedBodyPart != null)
         {
-            GameObject bodyPart1 = FindChildWithTag(creature1, tag);
-            GameObject bodyPart2 = FindChildWithTag(creature2, tag);
-
-            GameObject selectedBodyPart = (i % 2 == 0) ? bodyPart1 : bodyPart2;
-
-            if (selectedBodyPart != null)
-            {
-                GameObject newBodyPart = Instantiate(selectedBodyPart, mixedCreature.transform);
-                newBodyPart.name = tag;
-            }
-            else
-            {
-                Debug.LogError($"Body part with tag {tag} not found in creatures");
-            }
-
-            i++;
+            GameObject newBodyPart = Instantiate(selectedBodyPart, mixedCreature.transform);
+            newBodyPart.name = tag;
         }
-
-        // Set a suitable position for the new creature
-        mixedCreature.transform.position = new Vector3(
-            Random.Range(fenceCollider.bounds.min.x, fenceCollider.bounds.max.x),
-            0,
-            Random.Range(fenceCollider.bounds.min.z, fenceCollider.bounds.max.z)
-        );
+        else
+        {
+            Debug.LogError($"Body part with tag {tag} not found in creatures");
+        }
     }
+
+    // Set a suitable position for the new creature
+    mixedCreature.transform.position = new Vector3(
+        Random.Range(fenceCollider.bounds.min.x, fenceCollider.bounds.max.x),
+        0,
+        Random.Range(fenceCollider.bounds.min.z, fenceCollider.bounds.max.z)
+    );
+}
 
     GameObject FindChildWithTag(GameObject parent, string tag)
     {
