@@ -28,10 +28,10 @@ public class SpawnerScript : MonoBehaviour
     public void SpawnCharacter()
     {
         GameObject newCharContainer = (GameObject)Instantiate(CharContainer);
-        CharLegs = (GameObject)Instantiate(LegsPrefab[1]);
-        CharHead = (GameObject)Instantiate(HeadPrefab[1]);
-        CharArms = (GameObject)Instantiate(ArmsPrefab[1]);
-        CharChest = (GameObject)Instantiate(ChestPrefab[1]);
+        CharLegs = (GameObject)Instantiate(LegsPrefab[Random.Range(0, 7)]);
+        CharHead = (GameObject)Instantiate(HeadPrefab[Random.Range(0, 3)]);
+        CharArms = (GameObject)Instantiate(ArmsPrefab[Random.Range(0, 6)]);
+        CharChest = (GameObject)Instantiate(ChestPrefab[Random.Range(0, 4)]);
 
         CharLegs.transform.SetParent(newCharContainer.transform);
         CharHead.transform.SetParent(newCharContainer.transform);
