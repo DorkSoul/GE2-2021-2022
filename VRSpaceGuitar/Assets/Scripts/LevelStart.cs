@@ -14,12 +14,13 @@ public class LevelStart : MonoBehaviour
     {
         SpawnFoodObjects();
         StartCoroutine(KeepFoodCount());
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void SpawnFoodObjects()
@@ -30,15 +31,15 @@ public class LevelStart : MonoBehaviour
         for (int i = 0; i < numberOfTypes; i++)
         {
             for (int j = 0; j < foodPerType; j++)
-        {
-            Vector3 spawnPosition = new Vector3(
-                Random.Range(-spawnRadius, spawnRadius),
-                3,
-                Random.Range(-spawnRadius, spawnRadius)
-            );
+            {
+                Vector3 spawnPosition = new Vector3(
+                    Random.Range(-spawnRadius, spawnRadius),
+                    3,
+                    Random.Range(-spawnRadius, spawnRadius)
+                );
 
-            Instantiate(FoodPrefabs[i], spawnPosition, Quaternion.identity);
-        }
+                Instantiate(FoodPrefabs[i], spawnPosition, Quaternion.identity);
+            }
         }
     }
 
@@ -59,15 +60,15 @@ public class LevelStart : MonoBehaviour
                 for (int i = 0; i < numberOfTypes; i++)
                 {
                     for (int j = 0; j < foodPerType; j++)
-        {
-            Vector3 spawnPosition = new Vector3(
-                Random.Range(-spawnRadius, spawnRadius),
-                3,
-                Random.Range(-spawnRadius, spawnRadius)
-            );
+                    {
+                        Vector3 spawnPosition = new Vector3(
+                            Random.Range(-spawnRadius, spawnRadius),
+                            3,
+                            Random.Range(-spawnRadius, spawnRadius)
+                        );
 
-            Instantiate(FoodPrefabs[i], spawnPosition, Quaternion.identity);
-        }
+                        Instantiate(FoodPrefabs[i], spawnPosition, Quaternion.identity);
+                    }
                 }
             }
         }

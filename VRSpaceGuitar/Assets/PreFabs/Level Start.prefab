@@ -57,6 +57,8 @@ MonoBehaviour:
   numberOfFoodObjects: 50
   spawnRadius: 50
   spawnCheckInterval: 30
+  fenceCollider: {fileID: 6415441839265722969, guid: e485d893c36468a40b75f3178c6cb04e,
+    type: 3}
 --- !u!114 &-221058013210934097
 MonoBehaviour:
   m_ObjectHideFlags: 0

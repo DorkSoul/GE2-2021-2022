@@ -73,7 +73,7 @@ public class Wander : SteeringBehaviour
 
                 // Select a random body part type (Legs, Head, Arms, or Chest)
                 List<string> bodyPartTypes = new List<string>(bodyParts.Keys);
-                int randomBodyPartTypeIndex = Random.Range(0, bodyPartTypes.Count);
+                int randomBodyPartTypeIndex = Random.Range(0, bodyPartTypes.Count-1);
                 string randomBodyPartType = bodyPartTypes[randomBodyPartTypeIndex];
 
                 List<GameObject> prefabs = foodScript.GetBodyPartPrefabs(randomBodyPartType);
