@@ -9,7 +9,8 @@ TagManager:
   - Food
   - Arm
   - Leg
-  - Arms
+  - Body
+  - Creature
   layers:
   - Default
   - TransparentFX

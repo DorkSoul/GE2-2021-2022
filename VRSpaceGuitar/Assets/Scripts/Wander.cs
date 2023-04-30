@@ -62,7 +62,7 @@ public class Wander : SteeringBehaviour
         return force;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Food"))
         {
@@ -166,6 +166,12 @@ public class Wander : SteeringBehaviour
                         }
                     }
                 }
+            }
+
+            // play sound if head
+            if (newBodyPart.tag == "head")
+            {
+                newBodyPart.GetComponent<AudioSource>().Play();
             }
         }
     }
