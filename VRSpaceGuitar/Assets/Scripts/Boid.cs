@@ -17,7 +17,7 @@ public class Boid : MonoBehaviour
     [Range(0.0f, 1.0f)]
     public float banking = 0.1f;
     public float maxSpeed = 1.0f;
-    public float maxForce = 10.0f;
+    public float maxForce = 2.0f;
     private float initialY;
 
     public void OnDrawGizmos()
