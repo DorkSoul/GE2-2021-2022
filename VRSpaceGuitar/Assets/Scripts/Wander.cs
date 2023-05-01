@@ -138,12 +138,6 @@ public class Wander : SteeringBehaviour
             // Instantiate the new body part at the position and rotation of the old body part
             GameObject newBodyPart = Instantiate(prefab, existingBodyPartPosition, existingBodyPartRotation);
             
-            if (newBodyPart.tag == "Head")
-            {
-                Debug.Log("hi");
-                Player = newBodyPart.GetComponent<AudioSource>();
-                playChord();
-            }
             // Set the new body part's parent to be the same as the old body part
             newBodyPart.transform.SetParent(existingBodyPartParent);
 
@@ -176,13 +170,14 @@ public class Wander : SteeringBehaviour
             }
 
             // play sound if head
-            if (newBodyPart.tag == "head")
+            if (newBodyPart.tag == "Head")
             {
-                newBodyPart.GetComponent<AudioSource>().Play();
+                Player = newBodyPart.GetComponent<AudioSource>();
+                playSound();
             }
         }
     }
-    public void playChord()
+    public void playSound()
     {
         Player.Play();
     }
