@@ -10,6 +10,7 @@ public class Wander : SteeringBehaviour
     public float wanderJitter = 1f;
     public float wanderForce = 1f;
 
+    public AudioSource Player;
     private Vector3 wanderTarget;
     public Seek seek;
     public ObstacleAvoidance obstacleAvoidance;
@@ -175,9 +176,10 @@ public class Wander : SteeringBehaviour
             }
 
             // play sound if head
-            if (newBodyPart.tag == "head")
+            if (newBodyPart.tag == "Head")
             {
-                newBodyPart.GetComponent<AudioSource>().Play();
+                Player = newBodyPart.GetComponent<AudioSource>();
+                playSound();
             }
         }
     }
@@ -188,5 +190,9 @@ public class Wander : SteeringBehaviour
         {
             renderer.material = material;
         }
+    }
+    public void playSound()
+    {
+        Player.Play();
     }
 }

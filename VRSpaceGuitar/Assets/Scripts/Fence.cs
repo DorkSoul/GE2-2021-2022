@@ -7,7 +7,7 @@ public class Fence : MonoBehaviour
     private BoxCollider fenceCollider;
     public float spawnCheckInterval = 2f;
     public GameObject newCreature;
-
+    public AudioSource Player;
     // Start is called before the first frame update
     void Start()
     {
@@ -93,6 +93,7 @@ public class Fence : MonoBehaviour
             {
                 GameObject newBodyPart = Instantiate(selectedBodyPart, mixedCreature.transform);
                 newBodyPart.name = tag;
+                playSound();
 
                 // Set the material of the new body part and its children
                 SetMaterialInChildren(newBodyPart, selectedBodyPart.GetComponentInChildren<Renderer>().sharedMaterial);
@@ -147,5 +148,10 @@ public class Fence : MonoBehaviour
     void KeepCreatureUpright(GameObject creature)
     {
         creature.transform.rotation = Quaternion.Euler(0, creature.transform.eulerAngles.y, 0);
+    }
+
+    public void playSound()
+    {
+        Player.Play();
     }
 }
