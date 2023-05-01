@@ -10,11 +10,11 @@ Class Group:DT228
 # Description of the project
 	 You are on an alien planet planet full creatures made up of basic shapes or simple designs.  Food is around the planet, each food is with a set of body segments or movements it might add to the creature fed. You will be able to pick up the creatures and put them in a fenced area to produce one that has a random selection of features from each parent like a loving happy family.
 # Instructions for use
-	The user can move in Virtual Reality using their two controllers
-	The right controllers button is responsible for turning,
-	where as the left controller is responsible for moving.
-	the individual can walk on the various platforms to explore the world
-    The invidividual is able to move the creature to the fence to make them reproduce
+Use the right controller for turning
+Use the left controller for moving.
+The individual can move around and explore the world.
+The individual is able to grab the creatures and put them in the fence for them to breed and create new creatures.
+The creatures collect food and gather random body parts and through evolution they change their body
 
 # How it works
 ### Model combined with camera
@@ -86,82 +86,6 @@ We have followed a tutorial to get the legs to move in accordance to the rate of
 
 # Proposal submitted earlier can go here:
 	We will be making an alien planet nature simulation. You will be on an alien planet planet full creatures made up of basic shapes or simple designs.  Food will be around the planet, each with a set of body segments or movements it might add to the creature fed. You will be able to pick up the creatures and put them in a fenced area to produce one that has a random selection of features from each parent like a loving happy family.
-## This is how to markdown text:
-
-# class "scale from microphone"
-```c#
-void Update()
-    {
-        float loudness = detector.GetLoudnessFromMicrophone() * loudnessSensibility;
-
-        if ( loudness<threshold)
-            loudness =0;
-        transform.localScale= Vector3.Lerp(minScale,maxScale,loudness);
-    }
-```
-Gets the loudnessFromMicrophone class from a different file and compares it then it scales it relative to the variables
-# class "GetLoudnessFromMicrophone"
-```c#
-    public float GetLoudnessFromMicrophone()
-    {
-        return GetLoudnessFromAudioClip(Microphone.GetPosition(Microphone.devices[0]),microphoneClip);
-    }
-```
-Gets loudness from a clip 
-# class "GetLoudnessFromAudioClip"
-```c#
-    public float GetLoudnessFromAudioClip(int clipPosition, AudioClip clip)
-    {
-        int startPosition = clipPosition- sampleWindow;
-        if(startPosition<0)
-            return 0;
-
-        float[] waveData = new float[sampleWindow];
-        clip.GetData(waveData,startPosition);
-
-        //compute loudness
-        float totalLoudness = 0;
-        for(int i = 0 ; i < sampleWindow; i++)
-        {
-            totalLoudness+= Mathf.Abs(waveData[i]);
-        }
-        return totalLoudness/ sampleWindow;
-    }
-```
-Uses GetData to fetch data from the microphone which is in the form of a wave
-# class "CircularMovement"
-```c#
-    void Update()
-    {
-        if (angle >= 360f)
-            angle = 0f;
-            posX =  centerRotation.position.x + Mathf.Cos (angle) * radiusRotation;
-            posY =  centerRotation.position.y + Mathf.Sin (angle) * radiusRotation;
-            posZ =  centerRotation.position.z + Mathf.Sin (angle) * radiusRotation;
-            angle += Time.deltaTime * angularSpeed;
-        
-
-        transform.position = new Vector3(posX,posY,posZ);
-    }
-```
-Makes the main spaceship rotate in a circular way
-# class "ParticleAI"
-```c#
-    void Update()
-    {
-        otherParticleMesh.SetDestination(particleObj.position);
-    }
-```
-Helps with Artificial intelligence of agents to follow the object
-# class "Randomrotate"
-```c#
-    void Update()
-    {
-        rotateS = speed * Time.deltaTime;
-        transform.Rotate(0, rotateS, 0);
-    }
-```
-Rototate the hologram platforms
 
 # Maciej Golubski
  Created assets, the space system,terrain, the creatures and functions related to it, Im really proud of the character swapping body parts, animations and different assets and spawning of creatures. I learned how to effectively swap body parts to a creature spawn
