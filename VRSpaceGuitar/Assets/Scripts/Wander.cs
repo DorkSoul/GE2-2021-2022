@@ -73,7 +73,7 @@ public class Wander : SteeringBehaviour
 
                 // Select a random body part type (Legs, Head, Arms, or Chest)
                 List<string> bodyPartTypes = new List<string>(bodyParts.Keys);
-                int randomBodyPartTypeIndex = Random.Range(0, bodyPartTypes.Count-1);
+                int randomBodyPartTypeIndex = Random.Range(0, bodyPartTypes.Count - 1);
                 string randomBodyPartType = bodyPartTypes[randomBodyPartTypeIndex];
 
                 List<GameObject> prefabs = foodScript.GetBodyPartPrefabs(randomBodyPartType);
@@ -131,11 +131,17 @@ public class Wander : SteeringBehaviour
             Quaternion existingBodyPartRotation = existingBodyPart.rotation;
             Transform existingBodyPartParent = existingBodyPart.parent;
 
+            // Get the material of the existing body part
+            Material existingBodyPartMaterial = existingBodyPart.GetComponentInChildren<Renderer>().sharedMaterial;
+
             // Destroy the existing body part
             Destroy(existingBodyPart.gameObject);
 
             // Instantiate the new body part at the position and rotation of the old body part
             GameObject newBodyPart = Instantiate(prefab, existingBodyPartPosition, existingBodyPartRotation);
+
+            // Set the material of the new body part and its children
+            SetMaterialInChildren(newBodyPart, existingBodyPartMaterial);
 
             // Set the new body part's parent to be the same as the old body part
             newBodyPart.transform.SetParent(existingBodyPartParent);
@@ -173,6 +179,14 @@ public class Wander : SteeringBehaviour
             {
                 newBodyPart.GetComponent<AudioSource>().Play();
             }
+        }
+    }
+    void SetMaterialInChildren(GameObject parent, Material material)
+    {
+        Renderer[] renderers = parent.GetComponentsInChildren<Renderer>();
+        foreach (Renderer renderer in renderers)
+        {
+            renderer.material = material;
         }
     }
 }

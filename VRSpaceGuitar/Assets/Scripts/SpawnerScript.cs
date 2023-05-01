@@ -13,6 +13,7 @@ public class SpawnerScript : MonoBehaviour
     public GameObject[] HeadPrefab;
     public GameObject[] ArmsPrefab;
     public GameObject[] ChestPrefab;
+    public Material[] Materials;
     
     public GameObject SpaceShip;
     public GameObject CharContainer;
@@ -42,6 +43,14 @@ public class SpawnerScript : MonoBehaviour
         CharHead.transform.SetParent(newCharContainer.transform);
         CharArms.transform.SetParent(newCharContainer.transform);
         CharChest.transform.SetParent(newCharContainer.transform);
+        
+        int materialIndex = Random.Range(0, Materials.Length);
+        Material randomMaterial = Materials[materialIndex];
+
+        SetMaterialInChildren(CharLegs, randomMaterial);
+        SetMaterialInChildren(CharHead, randomMaterial);
+        SetMaterialInChildren(CharArms, randomMaterial);
+        SetMaterialInChildren(CharChest, randomMaterial);
 
         // Set the position of the character container object
         float xPos = Random.Range(-10f, 10f);
@@ -56,6 +65,14 @@ public class SpawnerScript : MonoBehaviour
         float xPos = Random.Range(-100f, 100f);
         float zPos = Random.Range(-100f, 100f);
         newShipContainer.transform.position = new Vector3(xPos, 100f, zPos);
+    }
+    void SetMaterialInChildren(GameObject parent, Material material)
+    {
+        Renderer[] renderers = parent.GetComponentsInChildren<Renderer>();
+        foreach (Renderer renderer in renderers)
+        {
+            renderer.material = material;
+        }
     }
     // Update is called once per frame
     void Update()

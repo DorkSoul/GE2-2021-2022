@@ -68,4 +68,15 @@ MonoBehaviour:
   - {fileID: 7052187582962208608, guid: ff88835dd136c7f49a8ec6a0da42efb9, type: 3}
   - {fileID: 1485089677921388130, guid: 3b8f77731c9b2f54690c494c5606d99c, type: 3}
   - {fileID: 7052187582962208608, guid: 27b4348166044ff4b921910c6d8057a5, type: 3}
+  Materials:
+  - {fileID: 2100000, guid: b844854c285df304bb3fb2855b0582ec, type: 2}
+  - {fileID: 2100000, guid: 20464442b8a1dc043b1bc535618e0397, type: 2}
+  - {fileID: 2100000, guid: c2f340216338e5a48a69974523202f0c, type: 2}
+  - {fileID: 2100000, guid: 4d18edf223ba12a49a6396cbb112ddf2, type: 2}
+  - {fileID: 2100000, guid: ef9b2da636b36a74e88024e03ef9edef, type: 2}
+  - {fileID: 2100000, guid: a3854d9b4d9b8db4e9e401f9c43bfdfa, type: 2}
+  - {fileID: 2100000, guid: 5da6d89e1aa7458439ce983d003f6b4c, type: 2}
+  - {fileID: 2100000, guid: 5306843354593d94aa6e292c06e5c45d, type: 2}
+  SpaceShip: {fileID: 2835014831812031755, guid: 1c7aeb812adef934b8a8bf723dc8d527,
+    type: 3}
   CharContainer: {fileID: 6882087017767150655}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Fall : MonoBehaviour
 {
-    private float fallSpeed = 0.2f;
+    private float fallSpeed = 5f;
     private const float targetYPosition = 0.0f;
 
     private void Update()

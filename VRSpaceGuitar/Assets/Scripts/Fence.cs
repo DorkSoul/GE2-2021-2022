@@ -69,44 +69,56 @@ public class Fence : MonoBehaviour
     }
 
     void CreateMixedCreature(GameObject creature1, GameObject creature2)
-{
-    Debug.Log("Creating a mixed creature");
-
-    // Instantiate the newCreature prefab
-    GameObject mixedCreature = Instantiate(newCreature, Vector3.zero, Quaternion.identity);
-    mixedCreature.name = "MixedCreature";
-
-    mixedCreature.tag = "Creature";
-    mixedCreature.layer = LayerMask.NameToLayer("Creature");
-
-    string[] bodyPartTags = { "Head", "Chest", "Arm", "Leg" };
-
-    foreach (string tag in bodyPartTags)
     {
-        GameObject bodyPart1 = FindChildWithTag(creature1, tag);
-        GameObject bodyPart2 = FindChildWithTag(creature2, tag);
+        Debug.Log("Creating a mixed creature");
 
-        // Select the body part randomly
-        GameObject selectedBodyPart = (Random.Range(0, 2) == 0) ? bodyPart1 : bodyPart2;
+        // Instantiate the newCreature prefab
+        GameObject mixedCreature = Instantiate(newCreature, Vector3.zero, Quaternion.identity);
+        mixedCreature.name = "MixedCreature";
 
-        if (selectedBodyPart != null)
+        mixedCreature.tag = "Creature";
+        mixedCreature.layer = LayerMask.NameToLayer("Creature");
+
+        string[] bodyPartTags = { "Head", "Chest", "Arm", "Leg" };
+
+        foreach (string tag in bodyPartTags)
         {
-            GameObject newBodyPart = Instantiate(selectedBodyPart, mixedCreature.transform);
-            newBodyPart.name = tag;
+            GameObject bodyPart1 = FindChildWithTag(creature1, tag);
+            GameObject bodyPart2 = FindChildWithTag(creature2, tag);
+
+            // Select the body part randomly
+            GameObject selectedBodyPart = (Random.Range(0, 2) == 0) ? bodyPart1 : bodyPart2;
+
+            if (selectedBodyPart != null)
+            {
+                GameObject newBodyPart = Instantiate(selectedBodyPart, mixedCreature.transform);
+                newBodyPart.name = tag;
+
+                // Set the material of the new body part and its children
+                SetMaterialInChildren(newBodyPart, selectedBodyPart.GetComponentInChildren<Renderer>().sharedMaterial);
+            }
+            else
+            {
+                Debug.LogError($"Body part with tag {tag} not found in creatures");
+            }
         }
-        else
-        {
-            Debug.LogError($"Body part with tag {tag} not found in creatures");
-        }
+
+        // Set a suitable position for the new creature
+        mixedCreature.transform.position = new Vector3(
+            Random.Range(fenceCollider.bounds.min.x, fenceCollider.bounds.max.x),
+            3,
+            Random.Range(fenceCollider.bounds.min.z, fenceCollider.bounds.max.z)
+        );
     }
 
-    // Set a suitable position for the new creature
-    mixedCreature.transform.position = new Vector3(
-        Random.Range(fenceCollider.bounds.min.x, fenceCollider.bounds.max.x),
-        3,
-        Random.Range(fenceCollider.bounds.min.z, fenceCollider.bounds.max.z)
-    );
-}
+    void SetMaterialInChildren(GameObject parent, Material material)
+    {
+        Renderer[] renderers = parent.GetComponentsInChildren<Renderer>();
+        foreach (Renderer renderer in renderers)
+        {
+            renderer.material = material;
+        }
+    }
 
     GameObject FindChildWithTag(GameObject parent, string tag)
     {
