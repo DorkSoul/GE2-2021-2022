@@ -16,7 +16,6 @@ public class Fall : MonoBehaviour
         {
             newPos.y = targetYPosition;
         }
-
         transform.position = newPos;
     }
 }
