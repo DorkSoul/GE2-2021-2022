@@ -103,7 +103,7 @@ public class Fence : MonoBehaviour
     // Set a suitable position for the new creature
     mixedCreature.transform.position = new Vector3(
         Random.Range(fenceCollider.bounds.min.x, fenceCollider.bounds.max.x),
-        0,
+        3,
         Random.Range(fenceCollider.bounds.min.z, fenceCollider.bounds.max.z)
     );
 }
