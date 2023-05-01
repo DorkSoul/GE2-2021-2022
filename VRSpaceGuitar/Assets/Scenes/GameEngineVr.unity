@@ -485,11 +485,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 891009444924192639, guid: c3bf43006196560469823bf643763f0f,
-        type: 3}
-      propertyPath: m_Text
-      value: Tutorial
-      objectReference: {fileID: 0}
     - target: {fileID: 891009445299401561, guid: c3bf43006196560469823bf643763f0f,
         type: 3}
       propertyPath: m_text
@@ -502,34 +497,19 @@ PrefabInstance:
       objectReference: {fileID: 1057865276}
     - target: {fileID: 891009445852423122, guid: c3bf43006196560469823bf643763f0f,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 891009445852423122, guid: c3bf43006196560469823bf643763f0f,
-        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Tutorial
-      objectReference: {fileID: 0}
-    - target: {fileID: 891009445852423124, guid: c3bf43006196560469823bf643763f0f,
-        type: 3}
-      propertyPath: m_Name
       value: Tutorial
       objectReference: {fileID: 0}
     - target: {fileID: 891009445864042760, guid: c3bf43006196560469823bf643763f0f,
         type: 3}
       propertyPath: m_Text
-      value: Start Game
+      value: Restart
       objectReference: {fileID: 0}
     - target: {fileID: 891009446250794778, guid: c3bf43006196560469823bf643763f0f,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1057865276}
-    - target: {fileID: 891009446250794778, guid: c3bf43006196560469823bf643763f0f,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadScene
-      objectReference: {fileID: 0}
     - target: {fileID: 891009446250794778, guid: c3bf43006196560469823bf643763f0f,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
@@ -553,22 +533,22 @@ PrefabInstance:
     - target: {fileID: 891009446672373343, guid: c3bf43006196560469823bf643763f0f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.4447325
+      value: -4.97
       objectReference: {fileID: 0}
     - target: {fileID: 891009446672373343, guid: c3bf43006196560469823bf643763f0f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.986
+      value: 1.06
       objectReference: {fileID: 0}
     - target: {fileID: 891009446672373343, guid: c3bf43006196560469823bf643763f0f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.18
+      value: -3.2
       objectReference: {fileID: 0}
     - target: {fileID: 891009446672373343, guid: c3bf43006196560469823bf643763f0f,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 0.30070582
       objectReference: {fileID: 0}
     - target: {fileID: 891009446672373343, guid: c3bf43006196560469823bf643763f0f,
         type: 3}
@@ -578,7 +558,7 @@ PrefabInstance:
     - target: {fileID: 891009446672373343, guid: c3bf43006196560469823bf643763f0f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -1
+      value: -0.95371693
       objectReference: {fileID: 0}
     - target: {fileID: 891009446672373343, guid: c3bf43006196560469823bf643763f0f,
         type: 3}
@@ -593,7 +573,7 @@ PrefabInstance:
     - target: {fileID: 891009446672373343, guid: c3bf43006196560469823bf643763f0f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -180
+      value: -145
       objectReference: {fileID: 0}
     - target: {fileID: 891009446672373343, guid: c3bf43006196560469823bf643763f0f,
         type: 3}
@@ -1463,6 +1443,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Locomotion System
+      objectReference: {fileID: 0}
+    - target: {fileID: 365283637231293487, guid: 692992557e0ede3448fedb2ed3b3230b,
+        type: 3}
+      propertyPath: m_MoveSpeed
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

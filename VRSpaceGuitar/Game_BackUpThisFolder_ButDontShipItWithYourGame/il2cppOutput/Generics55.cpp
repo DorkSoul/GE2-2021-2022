@@ -1090,6 +1090,8 @@ struct UnityAction_1_t8FBFBC01962B7293F0E33F9D6F1CEAF2896D8669;
 struct UnityAction_1_tC5C168260FDBBEDACD1D1996850C58AA3E9C2259;
 // UnityEngine.Events.UnityAction`1<UnityEngine.InputSystem.InputAction/CallbackContext>
 struct UnityAction_1_t25305458B8564DA12BCB6A3CAA559EA331E2D0DC;
+// UnityEngine.Events.UnityAction`2<System.Char,System.Int32>
+struct UnityAction_2_t2654BCB968A8286196F6268276089A674B0A9007;
 // UnityEngine.Events.UnityAction`2<UnityEngine.SceneManagement.Scene,System.Int32Enum>
 struct UnityAction_2_tF47D82C7E3C3B118B409866D926435B55A0675BD;
 // UnityEngine.Events.UnityAction`2<UnityEngine.SceneManagement.Scene,UnityEngine.SceneManagement.Scene>
@@ -1098,6 +1100,8 @@ struct UnityAction_2_t3E619780AA870611658EC8B01DA6EA2EC42B13CE;
 struct UnityAction_2_t742C43FA6EAABE0458C753DFE15FDDFAE01EA73F;
 // UnityEngine.Events.UnityAction`3<System.Object,System.Int32,System.Int32>
 struct UnityAction_3_t2F4C93AEE3F6452801100D902D54CF21027541D8;
+// UnityEngine.Events.UnityAction`3<System.Object,System.Object,System.Int32>
+struct UnityAction_3_tFD664A83B91518A4F822E02F501557F29ECCF487;
 // UnityEngine.Events.UnityAction`3<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
 struct UnityAction_3_t63FCFB2F4A79E45F22B316176EBC03C84C95F6A6;
 // UnityEngine.Events.UnityAction`4<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
@@ -6333,6 +6337,11 @@ struct UnityAction_1_t25305458B8564DA12BCB6A3CAA559EA331E2D0DC  : public Multica
 {
 };
 
+// UnityEngine.Events.UnityAction`2<System.Char,System.Int32>
+struct UnityAction_2_t2654BCB968A8286196F6268276089A674B0A9007  : public MulticastDelegate_t
+{
+};
+
 // UnityEngine.Events.UnityAction`2<UnityEngine.SceneManagement.Scene,System.Int32Enum>
 struct UnityAction_2_tF47D82C7E3C3B118B409866D926435B55A0675BD  : public MulticastDelegate_t
 {
@@ -6350,6 +6359,11 @@ struct UnityAction_2_t742C43FA6EAABE0458C753DFE15FDDFAE01EA73F  : public Multica
 
 // UnityEngine.Events.UnityAction`3<System.Object,System.Int32,System.Int32>
 struct UnityAction_3_t2F4C93AEE3F6452801100D902D54CF21027541D8  : public MulticastDelegate_t
+{
+};
+
+// UnityEngine.Events.UnityAction`3<System.Object,System.Object,System.Int32>
+struct UnityAction_3_tFD664A83B91518A4F822E02F501557F29ECCF487  : public MulticastDelegate_t
 {
 };
 
@@ -34050,6 +34064,70 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnityAction_1_Invoke_mD4B005629FBA8C63F4
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
+void UnityAction_2_Invoke_mE0DCB170A0834898AA3F98525DC0E74CB49581E4_Multicast(UnityAction_2_t2654BCB968A8286196F6268276089A674B0A9007* __this, Il2CppChar ___arg00, int32_t ___arg11, const RuntimeMethod* method)
+{
+	il2cpp_array_size_t length = __this->___delegates_13->max_length;
+	Delegate_t** delegatesToInvoke = reinterpret_cast<Delegate_t**>(__this->___delegates_13->GetAddressAtUnchecked(0));
+	for (il2cpp_array_size_t i = 0; i < length; i++)
+	{
+		UnityAction_2_t2654BCB968A8286196F6268276089A674B0A9007* currentDelegate = reinterpret_cast<UnityAction_2_t2654BCB968A8286196F6268276089A674B0A9007*>(delegatesToInvoke[i]);
+		typedef void (*FunctionPointerType) (RuntimeObject*, Il2CppChar, int32_t, const RuntimeMethod*);
+		((FunctionPointerType)currentDelegate->___invoke_impl_1)((Il2CppObject*)currentDelegate->___method_code_6, ___arg00, ___arg11, reinterpret_cast<RuntimeMethod*>(currentDelegate->___method_3));
+	}
+}
+void UnityAction_2_Invoke_mE0DCB170A0834898AA3F98525DC0E74CB49581E4_OpenInst(UnityAction_2_t2654BCB968A8286196F6268276089A674B0A9007* __this, Il2CppChar ___arg00, int32_t ___arg11, const RuntimeMethod* method)
+{
+	typedef void (*FunctionPointerType) (Il2CppChar, int32_t, const RuntimeMethod*);
+	((FunctionPointerType)__this->___method_ptr_0)(___arg00, ___arg11, method);
+}
+void UnityAction_2_Invoke_mE0DCB170A0834898AA3F98525DC0E74CB49581E4_OpenStatic(UnityAction_2_t2654BCB968A8286196F6268276089A674B0A9007* __this, Il2CppChar ___arg00, int32_t ___arg11, const RuntimeMethod* method)
+{
+	typedef void (*FunctionPointerType) (Il2CppChar, int32_t, const RuntimeMethod*);
+	((FunctionPointerType)__this->___method_ptr_0)(___arg00, ___arg11, method);
+}
+// System.Void UnityEngine.Events.UnityAction`2<System.Char,System.Int32>::.ctor(System.Object,System.IntPtr)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnityAction_2__ctor_m9F49CFF4FADF7EF080CEA8DCAD9FA2EB8D63F35D_gshared (UnityAction_2_t2654BCB968A8286196F6268276089A674B0A9007* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) 
+{
+	__this->___method_ptr_0 = il2cpp_codegen_get_method_pointer((RuntimeMethod*)___method1);
+	__this->___method_3 = ___method1;
+	__this->___m_target_2 = ___object0;
+	Il2CppCodeGenWriteBarrier((void**)(&__this->___m_target_2), (void*)___object0);
+	int parameterCount = il2cpp_codegen_method_parameter_count((RuntimeMethod*)___method1);
+	__this->___method_code_6 = (intptr_t)__this;
+	if (MethodIsStatic((RuntimeMethod*)___method1))
+	{
+		bool isOpen = parameterCount == 2;
+		if (isOpen)
+			__this->___invoke_impl_1 = (intptr_t)&UnityAction_2_Invoke_mE0DCB170A0834898AA3F98525DC0E74CB49581E4_OpenStatic;
+		else
+			{
+				__this->___invoke_impl_1 = (intptr_t)__this->___method_ptr_0;
+				__this->___method_code_6 = (intptr_t)__this->___m_target_2;
+			}
+	}
+	else
+	{
+		if (___object0 == NULL)
+			il2cpp_codegen_raise_exception(il2cpp_codegen_get_argument_exception(NULL, "Delegate to an instance method cannot have null 'this'."), NULL);
+		__this->___invoke_impl_1 = (intptr_t)__this->___method_ptr_0;
+		__this->___method_code_6 = (intptr_t)__this->___m_target_2;
+	}
+	__this->___extra_arg_5 = (intptr_t)&UnityAction_2_Invoke_mE0DCB170A0834898AA3F98525DC0E74CB49581E4_Multicast;
+}
+// System.Void UnityEngine.Events.UnityAction`2<System.Char,System.Int32>::Invoke(T0,T1)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnityAction_2_Invoke_mE0DCB170A0834898AA3F98525DC0E74CB49581E4_gshared (UnityAction_2_t2654BCB968A8286196F6268276089A674B0A9007* __this, Il2CppChar ___arg00, int32_t ___arg11, const RuntimeMethod* method) 
+{
+	typedef void (*FunctionPointerType) (RuntimeObject*, Il2CppChar, int32_t, const RuntimeMethod*);
+	((FunctionPointerType)__this->___invoke_impl_1)((Il2CppObject*)__this->___method_code_6, ___arg00, ___arg11, reinterpret_cast<RuntimeMethod*>(__this->___method_3));
+}
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
 void UnityAction_2_Invoke_m45979AF2609BAB3A34CE383DFFC5E6DC46C56EC2_Multicast(UnityAction_2_tF47D82C7E3C3B118B409866D926435B55A0675BD* __this, Scene_tA1DC762B79745EB5140F054C884855B922318356 ___arg00, int32_t ___arg11, const RuntimeMethod* method)
 {
 	il2cpp_array_size_t length = __this->___delegates_13->max_length;
@@ -34388,6 +34466,115 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnityAction_3__ctor_mD44DC0C0DB38805A3DB
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnityAction_3_Invoke_m2A58A5394EB2A9681C2224F095957A8E2A54C828_gshared (UnityAction_3_t2F4C93AEE3F6452801100D902D54CF21027541D8* __this, RuntimeObject* ___arg00, int32_t ___arg11, int32_t ___arg22, const RuntimeMethod* method) 
 {
 	typedef void (*FunctionPointerType) (RuntimeObject*, RuntimeObject*, int32_t, int32_t, const RuntimeMethod*);
+	((FunctionPointerType)__this->___invoke_impl_1)((Il2CppObject*)__this->___method_code_6, ___arg00, ___arg11, ___arg22, reinterpret_cast<RuntimeMethod*>(__this->___method_3));
+}
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+void UnityAction_3_Invoke_m973C2720651F9FADD287D4E98113D66DB0345E6A_Multicast(UnityAction_3_tFD664A83B91518A4F822E02F501557F29ECCF487* __this, RuntimeObject* ___arg00, RuntimeObject* ___arg11, int32_t ___arg22, const RuntimeMethod* method)
+{
+	il2cpp_array_size_t length = __this->___delegates_13->max_length;
+	Delegate_t** delegatesToInvoke = reinterpret_cast<Delegate_t**>(__this->___delegates_13->GetAddressAtUnchecked(0));
+	for (il2cpp_array_size_t i = 0; i < length; i++)
+	{
+		UnityAction_3_tFD664A83B91518A4F822E02F501557F29ECCF487* currentDelegate = reinterpret_cast<UnityAction_3_tFD664A83B91518A4F822E02F501557F29ECCF487*>(delegatesToInvoke[i]);
+		typedef void (*FunctionPointerType) (RuntimeObject*, RuntimeObject*, RuntimeObject*, int32_t, const RuntimeMethod*);
+		((FunctionPointerType)currentDelegate->___invoke_impl_1)((Il2CppObject*)currentDelegate->___method_code_6, ___arg00, ___arg11, ___arg22, reinterpret_cast<RuntimeMethod*>(currentDelegate->___method_3));
+	}
+}
+void UnityAction_3_Invoke_m973C2720651F9FADD287D4E98113D66DB0345E6A_OpenInst(UnityAction_3_tFD664A83B91518A4F822E02F501557F29ECCF487* __this, RuntimeObject* ___arg00, RuntimeObject* ___arg11, int32_t ___arg22, const RuntimeMethod* method)
+{
+	NullCheck(___arg00);
+	typedef void (*FunctionPointerType) (RuntimeObject*, RuntimeObject*, int32_t, const RuntimeMethod*);
+	((FunctionPointerType)__this->___method_ptr_0)(___arg00, ___arg11, ___arg22, method);
+}
+void UnityAction_3_Invoke_m973C2720651F9FADD287D4E98113D66DB0345E6A_OpenStatic(UnityAction_3_tFD664A83B91518A4F822E02F501557F29ECCF487* __this, RuntimeObject* ___arg00, RuntimeObject* ___arg11, int32_t ___arg22, const RuntimeMethod* method)
+{
+	typedef void (*FunctionPointerType) (RuntimeObject*, RuntimeObject*, int32_t, const RuntimeMethod*);
+	((FunctionPointerType)__this->___method_ptr_0)(___arg00, ___arg11, ___arg22, method);
+}
+void UnityAction_3_Invoke_m973C2720651F9FADD287D4E98113D66DB0345E6A_OpenVirtual(UnityAction_3_tFD664A83B91518A4F822E02F501557F29ECCF487* __this, RuntimeObject* ___arg00, RuntimeObject* ___arg11, int32_t ___arg22, const RuntimeMethod* method)
+{
+	NullCheck(___arg00);
+	VirtualActionInvoker2< RuntimeObject*, int32_t >::Invoke(il2cpp_codegen_method_get_slot(method), ___arg00, ___arg11, ___arg22);
+}
+void UnityAction_3_Invoke_m973C2720651F9FADD287D4E98113D66DB0345E6A_OpenInterface(UnityAction_3_tFD664A83B91518A4F822E02F501557F29ECCF487* __this, RuntimeObject* ___arg00, RuntimeObject* ___arg11, int32_t ___arg22, const RuntimeMethod* method)
+{
+	NullCheck(___arg00);
+	InterfaceActionInvoker2< RuntimeObject*, int32_t >::Invoke(il2cpp_codegen_method_get_slot(method), il2cpp_codegen_method_get_declaring_type(method), ___arg00, ___arg11, ___arg22);
+}
+void UnityAction_3_Invoke_m973C2720651F9FADD287D4E98113D66DB0345E6A_OpenGenericVirtual(UnityAction_3_tFD664A83B91518A4F822E02F501557F29ECCF487* __this, RuntimeObject* ___arg00, RuntimeObject* ___arg11, int32_t ___arg22, const RuntimeMethod* method)
+{
+	NullCheck(___arg00);
+	GenericVirtualActionInvoker2< RuntimeObject*, int32_t >::Invoke(method, ___arg00, ___arg11, ___arg22);
+}
+void UnityAction_3_Invoke_m973C2720651F9FADD287D4E98113D66DB0345E6A_OpenGenericInterface(UnityAction_3_tFD664A83B91518A4F822E02F501557F29ECCF487* __this, RuntimeObject* ___arg00, RuntimeObject* ___arg11, int32_t ___arg22, const RuntimeMethod* method)
+{
+	NullCheck(___arg00);
+	GenericInterfaceActionInvoker2< RuntimeObject*, int32_t >::Invoke(method, ___arg00, ___arg11, ___arg22);
+}
+// System.Void UnityEngine.Events.UnityAction`3<System.Object,System.Object,System.Int32>::.ctor(System.Object,System.IntPtr)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnityAction_3__ctor_m2F6C2E527FCBE0253599EB3B4066B3F3E0FD5A6D_gshared (UnityAction_3_tFD664A83B91518A4F822E02F501557F29ECCF487* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) 
+{
+	__this->___method_ptr_0 = il2cpp_codegen_get_method_pointer((RuntimeMethod*)___method1);
+	__this->___method_3 = ___method1;
+	__this->___m_target_2 = ___object0;
+	Il2CppCodeGenWriteBarrier((void**)(&__this->___m_target_2), (void*)___object0);
+	int parameterCount = il2cpp_codegen_method_parameter_count((RuntimeMethod*)___method1);
+	__this->___method_code_6 = (intptr_t)__this;
+	if (MethodIsStatic((RuntimeMethod*)___method1))
+	{
+		bool isOpen = parameterCount == 3;
+		if (isOpen)
+			__this->___invoke_impl_1 = (intptr_t)&UnityAction_3_Invoke_m973C2720651F9FADD287D4E98113D66DB0345E6A_OpenStatic;
+		else
+			{
+				__this->___invoke_impl_1 = (intptr_t)__this->___method_ptr_0;
+				__this->___method_code_6 = (intptr_t)__this->___m_target_2;
+			}
+	}
+	else
+	{
+		bool isOpen = parameterCount == 2;
+		if (isOpen)
+		{
+			if (__this->___method_is_virtual_12)
+			{
+				if (il2cpp_codegen_method_is_generic_instance_method((RuntimeMethod*)___method1))
+					if (il2cpp_codegen_method_is_interface_method((RuntimeMethod*)___method1))
+						__this->___invoke_impl_1 = (intptr_t)&UnityAction_3_Invoke_m973C2720651F9FADD287D4E98113D66DB0345E6A_OpenGenericInterface;
+					else
+						__this->___invoke_impl_1 = (intptr_t)&UnityAction_3_Invoke_m973C2720651F9FADD287D4E98113D66DB0345E6A_OpenGenericVirtual;
+				else
+					if (il2cpp_codegen_method_is_interface_method((RuntimeMethod*)___method1))
+						__this->___invoke_impl_1 = (intptr_t)&UnityAction_3_Invoke_m973C2720651F9FADD287D4E98113D66DB0345E6A_OpenInterface;
+					else
+						__this->___invoke_impl_1 = (intptr_t)&UnityAction_3_Invoke_m973C2720651F9FADD287D4E98113D66DB0345E6A_OpenVirtual;
+			}
+			else
+			{
+				__this->___invoke_impl_1 = (intptr_t)&UnityAction_3_Invoke_m973C2720651F9FADD287D4E98113D66DB0345E6A_OpenInst;
+			}
+		}
+		else
+		{
+			if (___object0 == NULL)
+				il2cpp_codegen_raise_exception(il2cpp_codegen_get_argument_exception(NULL, "Delegate to an instance method cannot have null 'this'."), NULL);
+			__this->___invoke_impl_1 = (intptr_t)__this->___method_ptr_0;
+			__this->___method_code_6 = (intptr_t)__this->___m_target_2;
+		}
+	}
+	__this->___extra_arg_5 = (intptr_t)&UnityAction_3_Invoke_m973C2720651F9FADD287D4E98113D66DB0345E6A_Multicast;
+}
+// System.Void UnityEngine.Events.UnityAction`3<System.Object,System.Object,System.Int32>::Invoke(T0,T1,T2)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnityAction_3_Invoke_m973C2720651F9FADD287D4E98113D66DB0345E6A_gshared (UnityAction_3_tFD664A83B91518A4F822E02F501557F29ECCF487* __this, RuntimeObject* ___arg00, RuntimeObject* ___arg11, int32_t ___arg22, const RuntimeMethod* method) 
+{
+	typedef void (*FunctionPointerType) (RuntimeObject*, RuntimeObject*, RuntimeObject*, int32_t, const RuntimeMethod*);
 	((FunctionPointerType)__this->___invoke_impl_1)((Il2CppObject*)__this->___method_code_6, ___arg00, ___arg11, ___arg22, reinterpret_cast<RuntimeMethod*>(__this->___method_3));
 }
 #ifdef __clang__
