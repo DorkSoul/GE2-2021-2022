@@ -63,7 +63,7 @@ public class Wander : SteeringBehaviour
         return force;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Food"))
         {
@@ -74,7 +74,7 @@ public class Wander : SteeringBehaviour
 
                 // Select a random body part type (Legs, Head, Arms, or Chest)
                 List<string> bodyPartTypes = new List<string>(bodyParts.Keys);
-                int randomBodyPartTypeIndex = Random.Range(0, bodyPartTypes.Count);
+                int randomBodyPartTypeIndex = Random.Range(0, bodyPartTypes.Count-1);
                 string randomBodyPartType = bodyPartTypes[randomBodyPartTypeIndex];
 
                 List<GameObject> prefabs = foodScript.GetBodyPartPrefabs(randomBodyPartType);
@@ -173,6 +173,12 @@ public class Wander : SteeringBehaviour
                         }
                     }
                 }
+            }
+
+            // play sound if head
+            if (newBodyPart.tag == "head")
+            {
+                newBodyPart.GetComponent<AudioSource>().Play();
             }
         }
     }

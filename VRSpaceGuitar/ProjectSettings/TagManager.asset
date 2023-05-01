@@ -9,7 +9,9 @@ TagManager:
   - Food
   - Arm
   - Leg
-  - Arms
+  - Body
+  - Creature
+  - Fence
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Creature
   - 
   - 
   - 

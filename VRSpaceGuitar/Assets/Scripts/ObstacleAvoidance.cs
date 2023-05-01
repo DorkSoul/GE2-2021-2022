@@ -117,7 +117,7 @@ public class ObstacleAvoidance : SteeringBehaviour
         Vector3 force = Vector3.zero;
 
         // Return zero force if the collided object is part of the creature's hierarchy
-        if (info.collider != null && (info.collider.CompareTag("Food") || IsDescendantOfCreature(info.collider.transform)))
+        if (info.collider != null && (info.collider.CompareTag("Food") || IsDescendantOfCreature(info.collider.transform) || info.collider.CompareTag("Fence")))
         {
             return force;
         }

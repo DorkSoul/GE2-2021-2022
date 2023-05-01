@@ -13,15 +13,15 @@ public class SpawnerScript : MonoBehaviour
     public GameObject[] HeadPrefab;
     public GameObject[] ArmsPrefab;
     public GameObject[] ChestPrefab;
-
+    
     public GameObject SpaceShip;
     public GameObject CharContainer;
     // Start is called before the first frame update
     void Start()
-    {
-        var NumSelect = 0;
-        NumSelect = Random.Range(1, 9);
-        for (int i = 0; i < NumSelect; i++)
+    { 
+        var NumSelect= 0;
+        NumSelect  = Random.Range(1, 9);
+        for(int i=0;i<NumSelect;i++)
         {
             SpawnCharacter();
         }
@@ -33,10 +33,10 @@ public class SpawnerScript : MonoBehaviour
     public void SpawnCharacter()
     {
         GameObject newCharContainer = (GameObject)Instantiate(CharContainer);
-        CharLegs = (GameObject)Instantiate(LegsPrefab[1]);
-        CharHead = (GameObject)Instantiate(HeadPrefab[1]);
-        CharArms = (GameObject)Instantiate(ArmsPrefab[1]);
-        CharChest = (GameObject)Instantiate(ChestPrefab[1]);
+        CharLegs = (GameObject)Instantiate(LegsPrefab[Random.Range(0, 7)]);
+        CharHead = (GameObject)Instantiate(HeadPrefab[Random.Range(0, 3)]);
+        CharArms = (GameObject)Instantiate(ArmsPrefab[Random.Range(0, 6)]);
+        CharChest = (GameObject)Instantiate(ChestPrefab[Random.Range(0, 3)]);
 
         CharLegs.transform.SetParent(newCharContainer.transform);
         CharHead.transform.SetParent(newCharContainer.transform);
@@ -48,7 +48,6 @@ public class SpawnerScript : MonoBehaviour
         float zPos = Random.Range(-10f, 10f);
         newCharContainer.transform.position = new Vector3(xPos, 0f, zPos);
     }
-
     public void SpawnSpaceship()
     {
         GameObject newShipContainer = (GameObject)Instantiate(SpaceShip);
