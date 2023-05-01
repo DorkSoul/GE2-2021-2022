@@ -216,6 +216,17 @@ PrefabInstance:
       propertyPath: fenceCollider
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: -221058013210934097, guid: 843cd69f8ba5e7f4ab9354b88f0c9afa,
+        type: 3}
+      propertyPath: ChestPrefab.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -221058013210934097, guid: 843cd69f8ba5e7f4ab9354b88f0c9afa,
+        type: 3}
+      propertyPath: ChestPrefab.Array.data[3]
+      value: 
+      objectReference: {fileID: 7052187582962208608, guid: 27b4348166044ff4b921910c6d8057a5,
+        type: 3}
     - target: {fileID: 7296149621465252915, guid: 843cd69f8ba5e7f4ab9354b88f0c9afa,
         type: 3}
       propertyPath: m_RootOrder
