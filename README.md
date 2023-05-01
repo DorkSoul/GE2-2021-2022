@@ -28,20 +28,18 @@ We have followed a tutorial to get the legs to move in accordance to the rate of
 
 | Class/assets 				| Source |
 |---------------------------|-----------|
-| Arrive.cs 	            | Self written |e
-| Boid.cs			        | Self written |e
-| Seek.cs		            | Self written |
+| Arrive.cs 	            | Self written edits |
+| Boid.cs			        | Self written edits |
+| Seek.cs		            | Self written edits |
 | Fence.cs	                | Self written |
-| Fighter.cs			    | Self written |e
-| Flee.cs	                | Self written |e
-| FollowPath.cs             | Self written |e
+| Fighter.cs			    | Self written edits |
 | Food.cs	                | Self written |
-| wonder.cs	                | Self written |
 | LevelStart.cs	            | Self written |
 | MoveObject.cs	            | Self written |
 | wander.cs	                | Self written |
-| Path.cs	                | Self written |e
-| SpawnerScriot.cs	        | Self written |
+| SpawnerScript.cs	        | Self written |
+| Fall.cs	        		| Self written |
+| ObstacleAvoidance.cs	    | Self written edits |
 | Head.cs					| Modified from [reference](https://www.youtube.com/watch?v=MYOjQICbd8I&list=PLwz27aQG0IIK88An7Gd16An9RrdCXKBAB&index=19) |
 | Hand.cs					| Modified from [reference](https://www.youtube.com/watch?v=MYOjQICbd8I&list=PLwz27aQG0IIK88An7Gd16An9RrdCXKBAB&index=19)  |
 | IKFootSolver.cs 			| From [reference](https://www.youtube.com/watch?v=1Xr3jB8ik1g&t=256s) |
@@ -82,15 +80,13 @@ We have followed a tutorial to get the legs to move in accordance to the rate of
 | wings.fbx				    | self created in blender |
 # References
 
-# What I am most proud of in the assignment
-
 # Proposal submitted earlier can go here:
 	We will be making an alien planet nature simulation. You will be on an alien planet planet full creatures made up of basic shapes or simple designs.  Food will be around the planet, each with a set of body segments or movements it might add to the creature fed. You will be able to pick up the creatures and put them in a fenced area to produce one that has a random selection of features from each parent like a loving happy family.
 
 # Maciej Golubski
  Created assets, the space system,terrain, the creatures and functions related to it, Im really proud of the character swapping body parts, animations and different assets and spawning of creatures. I learned how to effectively swap body parts to a creature spawn
 # Luke Hallinan 
- Created movement for creatures, food script and fence mechanism 
+ Created movement for creatures, food script and fence mechanism. I am proud of the reproduction inside the fence area. i learned how to edit objects from other objects scripts and edit them.
 # Installed packages
 Animation rigging 
 physics 
