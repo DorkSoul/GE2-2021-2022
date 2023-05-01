@@ -221,6 +221,8 @@ struct Coroutine_t85EA685566A254C23F3FD77AB5BDFFFF8799596B;
 struct Dead_tB6B96E2D722357C55CAA8B58D421D9E0ED77D3FB;
 // DefendState
 struct DefendState_t53BCC303AC3D597F4FC16C63CEB012DD7A92C3BD;
+// Fall
+struct Fall_tEA4DEB5D79AB8FD9F5B1EDC34E56B7406B146896;
 // Fence
 struct Fence_tA158E5B729116A56A333FAD1520B97646C3C1C31;
 // Fighter
@@ -2419,6 +2421,13 @@ struct CircularMovement_t1E4E438E8AAD60D8D5F62446B6170DCBF4275452  : public Mono
 	float ___angle_10;
 };
 
+// Fall
+struct Fall_tEA4DEB5D79AB8FD9F5B1EDC34E56B7406B146896  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
+{
+	// System.Single Fall::fallSpeed
+	float ___fallSpeed_4;
+};
+
 // Fence
 struct Fence_tA158E5B729116A56A333FAD1520B97646C3C1C31  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
 {
@@ -2636,8 +2645,10 @@ struct SpawnerScript_tD62DFC55CC49C4FBFB5BB6BCB4729B83E1B5E54E  : public MonoBeh
 	GameObjectU5BU5D_tFF67550DFCE87096D7A3734EA15B75896B2722CF* ___ArmsPrefab_10;
 	// UnityEngine.GameObject[] SpawnerScript::ChestPrefab
 	GameObjectU5BU5D_tFF67550DFCE87096D7A3734EA15B75896B2722CF* ___ChestPrefab_11;
+	// UnityEngine.GameObject SpawnerScript::SpaceShip
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___SpaceShip_12;
 	// UnityEngine.GameObject SpawnerScript::CharContainer
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___CharContainer_12;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___CharContainer_13;
 };
 
 // StateMachine
@@ -4418,6 +4429,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float MicDetection_GetLoudnessFromMicrophone_
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Seek_FindClosestFoodWithTag_m96C8D0A7E38FA3584B79ABC71EB9729219CE44F2 (Seek_tF7612564FE9A3735D08D0C149929C6FC5D1688E7* __this, const RuntimeMethod* method) ;
 // System.Void SpawnerScript::SpawnCharacter()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpawnerScript_SpawnCharacter_m5C8C1C0B2206B99474904787527C9A622163731C (SpawnerScript_tD62DFC55CC49C4FBFB5BB6BCB4729B83E1B5E54E* __this, const RuntimeMethod* method) ;
+// System.Void SpawnerScript::SpawnSpaceship()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpawnerScript_SpawnSpaceship_m0BC738292BF38D23479736F9F694364AD422359C (SpawnerScript_tD62DFC55CC49C4FBFB5BB6BCB4729B83E1B5E54E* __this, const RuntimeMethod* method) ;
 // T UnityEngine.Object::Instantiate<UnityEngine.GameObject>(T)
 inline GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* Object_Instantiate_TisGameObject_t76FEDD663AB33C991A9C9A23129337651094216F_m10D87C6E0708CA912BBB02555BF7D0FBC5D7A2B3 (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___original0, const RuntimeMethod* method)
 {
@@ -6058,6 +6071,70 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CircularMovement__ctor_m6CD16AF8B1E6CBAB
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
+// System.Void Fall::Update()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Fall_Update_mAD9E507CFE182E7C46375A5BF68DD589A82119A4 (Fall_tEA4DEB5D79AB8FD9F5B1EDC34E56B7406B146896* __this, const RuntimeMethod* method) 
+{
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_0;
+	memset((&V_0), 0, sizeof(V_0));
+	{
+		// Vector3 newPos = transform.position;
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_0;
+		L_0 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		NullCheck(L_0);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_1;
+		L_1 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_0, NULL);
+		V_0 = L_1;
+		// newPos.y -= fallSpeed * Time.deltaTime;
+		float* L_2 = (&(&V_0)->___y_3);
+		float* L_3 = L_2;
+		float L_4 = *((float*)L_3);
+		float L_5 = __this->___fallSpeed_4;
+		float L_6;
+		L_6 = Time_get_deltaTime_mC3195000401F0FD167DD2F948FD2BC58330D0865(NULL);
+		*((float*)L_3) = (float)((float)il2cpp_codegen_subtract(L_4, ((float)il2cpp_codegen_multiply(L_5, L_6))));
+		// if (newPos.y < targetYPosition)
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_7 = V_0;
+		float L_8 = L_7.___y_3;
+		if ((!(((float)L_8) < ((float)(0.0f)))))
+		{
+			goto IL_003c;
+		}
+	}
+	{
+		// newPos.y = targetYPosition;
+		(&V_0)->___y_3 = (0.0f);
+	}
+
+IL_003c:
+	{
+		// transform.position = newPos;
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_9;
+		L_9 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_10 = V_0;
+		NullCheck(L_9);
+		Transform_set_position_mA1A817124BB41B685043DED2A9BA48CDF37C4156(L_9, L_10, NULL);
+		// }
+		return;
+	}
+}
+// System.Void Fall::.ctor()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Fall__ctor_mED19951AAE56858B8ED07425908F611FE0BD93ED (Fall_tEA4DEB5D79AB8FD9F5B1EDC34E56B7406B146896* __this, const RuntimeMethod* method) 
+{
+	{
+		// private float fallSpeed = 0.2f;
+		__this->___fallSpeed_4 = (0.200000003f);
+		MonoBehaviour__ctor_m592DB0105CA0BC97AA1C5F4AD27B12D68A3B7C1E(__this, NULL);
+		return;
+	}
+}
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
 // System.Void Fence::Start()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Fence_Start_mB3F0741CC2369515B206BE1C6A1CE15FCE5524E5 (Fence_tA158E5B729116A56A333FAD1520B97646C3C1C31* __this, const RuntimeMethod* method) 
 {
@@ -6392,7 +6469,7 @@ IL_00d2:
 	{
 		// mixedCreature.transform.position = new Vector3(
 		//     Random.Range(fenceCollider.bounds.min.x, fenceCollider.bounds.max.x),
-		//     0,
+		//     3,
 		//     Random.Range(fenceCollider.bounds.min.z, fenceCollider.bounds.max.z)
 		// );
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_38 = V_0;
@@ -6437,7 +6514,7 @@ IL_00d2:
 		L_57 = Random_Range_m5236C99A7D8AE6AC9190592DC66016652A2D2494(L_52, L_56, NULL);
 		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_58;
 		memset((&L_58), 0, sizeof(L_58));
-		Vector3__ctor_m376936E6B999EF1ECBE57D990A386303E2283DE0_inline((&L_58), L_48, (0.0f), L_57, /*hidden argument*/NULL);
+		Vector3__ctor_m376936E6B999EF1ECBE57D990A386303E2283DE0_inline((&L_58), L_48, (3.0f), L_57, /*hidden argument*/NULL);
 		NullCheck(L_39);
 		Transform_set_position_mA1A817124BB41B685043DED2A9BA48CDF37C4156(L_39, L_58, NULL);
 		// }
@@ -12334,6 +12411,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpawnerScript_Start_m4E620954A9A3B45A662
 {
 	int32_t V_0 = 0;
 	int32_t V_1 = 0;
+	int32_t V_2 = 0;
 	{
 		// var NumSelect= 0;
 		V_0 = 0;
@@ -12366,6 +12444,30 @@ IL_0019:
 		}
 	}
 	{
+		// for (int i = 0; i < 9; i++)
+		V_2 = 0;
+		goto IL_002b;
+	}
+
+IL_0021:
+	{
+		// SpawnSpaceship();
+		SpawnerScript_SpawnSpaceship_m0BC738292BF38D23479736F9F694364AD422359C(__this, NULL);
+		// for (int i = 0; i < 9; i++)
+		int32_t L_4 = V_2;
+		V_2 = ((int32_t)il2cpp_codegen_add(L_4, 1));
+	}
+
+IL_002b:
+	{
+		// for (int i = 0; i < 9; i++)
+		int32_t L_5 = V_2;
+		if ((((int32_t)L_5) < ((int32_t)((int32_t)9))))
+		{
+			goto IL_0021;
+		}
+	}
+	{
 		// }
 		return;
 	}
@@ -12385,7 +12487,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpawnerScript_SpawnCharacter_m5C8C1C0B22
 	float V_2 = 0.0f;
 	{
 		// GameObject newCharContainer = (GameObject)Instantiate(CharContainer);
-		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_0 = __this->___CharContainer_12;
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_0 = __this->___CharContainer_13;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_1;
 		L_1 = Object_Instantiate_TisGameObject_t76FEDD663AB33C991A9C9A23129337651094216F_m10D87C6E0708CA912BBB02555BF7D0FBC5D7A2B3(L_0, Object_Instantiate_TisGameObject_t76FEDD663AB33C991A9C9A23129337651094216F_m10D87C6E0708CA912BBB02555BF7D0FBC5D7A2B3_RuntimeMethod_var);
@@ -12423,10 +12525,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpawnerScript_SpawnCharacter_m5C8C1C0B22
 		L_16 = Object_Instantiate_TisGameObject_t76FEDD663AB33C991A9C9A23129337651094216F_m10D87C6E0708CA912BBB02555BF7D0FBC5D7A2B3(L_15, Object_Instantiate_TisGameObject_t76FEDD663AB33C991A9C9A23129337651094216F_m10D87C6E0708CA912BBB02555BF7D0FBC5D7A2B3_RuntimeMethod_var);
 		__this->___CharArms_6 = L_16;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___CharArms_6), (void*)L_16);
-		// CharChest = (GameObject)Instantiate(ChestPrefab[Random.Range(0, 4)]);
+		// CharChest = (GameObject)Instantiate(ChestPrefab[Random.Range(0, 3)]);
 		GameObjectU5BU5D_tFF67550DFCE87096D7A3734EA15B75896B2722CF* L_17 = __this->___ChestPrefab_11;
 		int32_t L_18;
-		L_18 = Random_Range_m6763D9767F033357F88B6637F048F4ACA4123B68(0, 4, NULL);
+		L_18 = Random_Range_m6763D9767F033357F88B6637F048F4ACA4123B68(0, 3, NULL);
 		NullCheck(L_17);
 		int32_t L_19 = L_18;
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_20 = (L_17)->GetAt(static_cast<il2cpp_array_size_t>(L_19));
@@ -12498,6 +12600,47 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpawnerScript_SpawnCharacter_m5C8C1C0B22
 		Vector3__ctor_m376936E6B999EF1ECBE57D990A386303E2283DE0_inline((&L_44), L_42, (0.0f), L_43, /*hidden argument*/NULL);
 		NullCheck(L_41);
 		Transform_set_position_mA1A817124BB41B685043DED2A9BA48CDF37C4156(L_41, L_44, NULL);
+		// }
+		return;
+	}
+}
+// System.Void SpawnerScript::SpawnSpaceship()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpawnerScript_SpawnSpaceship_m0BC738292BF38D23479736F9F694364AD422359C (SpawnerScript_tD62DFC55CC49C4FBFB5BB6BCB4729B83E1B5E54E* __this, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_Instantiate_TisGameObject_t76FEDD663AB33C991A9C9A23129337651094216F_m10D87C6E0708CA912BBB02555BF7D0FBC5D7A2B3_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	float V_0 = 0.0f;
+	float V_1 = 0.0f;
+	{
+		// GameObject newShipContainer = (GameObject)Instantiate(SpaceShip);
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_0 = __this->___SpaceShip_12;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_1;
+		L_1 = Object_Instantiate_TisGameObject_t76FEDD663AB33C991A9C9A23129337651094216F_m10D87C6E0708CA912BBB02555BF7D0FBC5D7A2B3(L_0, Object_Instantiate_TisGameObject_t76FEDD663AB33C991A9C9A23129337651094216F_m10D87C6E0708CA912BBB02555BF7D0FBC5D7A2B3_RuntimeMethod_var);
+		// float xPos = Random.Range(-100f, 100f);
+		float L_2;
+		L_2 = Random_Range_m5236C99A7D8AE6AC9190592DC66016652A2D2494((-100.0f), (100.0f), NULL);
+		V_0 = L_2;
+		// float zPos = Random.Range(-100f, 100f);
+		float L_3;
+		L_3 = Random_Range_m5236C99A7D8AE6AC9190592DC66016652A2D2494((-100.0f), (100.0f), NULL);
+		V_1 = L_3;
+		// newShipContainer.transform.position = new Vector3(xPos, 100f, zPos);
+		NullCheck(L_1);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_4;
+		L_4 = GameObject_get_transform_m0BC10ADFA1632166AE5544BDF9038A2650C2AE56(L_1, NULL);
+		float L_5 = V_0;
+		float L_6 = V_1;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_7;
+		memset((&L_7), 0, sizeof(L_7));
+		Vector3__ctor_m376936E6B999EF1ECBE57D990A386303E2283DE0_inline((&L_7), L_5, (100.0f), L_6, /*hidden argument*/NULL);
+		NullCheck(L_4);
+		Transform_set_position_mA1A817124BB41B685043DED2A9BA48CDF37C4156(L_4, L_7, NULL);
 		// }
 		return;
 	}
