@@ -51,12 +51,12 @@ public class Fence : MonoBehaviour
                 Quaternion.identity,
                 LayerMask.GetMask("Creature")
             );
-            Debug.Log("Number of creatures inside the fence: " + creaturesInsideFence.Length);
+            Debug.Log("Number of creatures inside the fence: " + creaturesInsideFence.Length/2);
 
-            if (creaturesInsideFence.Length == 2)
+            if (creaturesInsideFence.Length == 4)
             {
                 Debug.Log("Two creatures inside the fence");
-                CreateMixedCreature(creaturesInsideFence[0].gameObject, creaturesInsideFence[1].gameObject);
+                CreateMixedCreature(creaturesInsideFence[0].gameObject, creaturesInsideFence[2].gameObject);
             }
 
             float elapsedTime = 0;

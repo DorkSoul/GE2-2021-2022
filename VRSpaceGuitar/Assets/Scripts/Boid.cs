@@ -19,6 +19,9 @@ public class Boid : MonoBehaviour
     public float maxSpeed = 1.0f;
     public float maxForce = 2.0f;
     private float initialY;
+    private float fallSpeed = 5f;
+    private const float targetYPosition = 0.0f;
+    private float endY;
 
     public void OnDrawGizmos()
     {
@@ -111,6 +114,24 @@ public class Boid : MonoBehaviour
 
         velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
 
+        Vector3 newPos = transform.position;
+        newPos.y -= fallSpeed * Time.deltaTime;
+
+        if (newPos.y < targetYPosition)
+        {
+            newPos.y = targetYPosition;
+        }
+
+        //if object has tag Creature then set endY to newPos.y
+        if (gameObject.tag == "Creature")
+        {
+            endY = newPos.y;
+        }
+        else
+        {
+            endY = initialY;
+        }
+
         if (velocity.magnitude > 0)
         {
             Vector3 tempUp = Vector3.Lerp(transform.up, Vector3.up + (acceleration * banking), Time.deltaTime * 3.0f);
@@ -122,7 +143,7 @@ public class Boid : MonoBehaviour
             // Update position
             transform.position += velocity * Time.deltaTime;
             // Set the Y position to the initial Y value
-            transform.position = new Vector3(transform.position.x, initialY, transform.position.z);
+            transform.position = new Vector3(transform.position.x, endY, transform.position.z);
 
             velocity *= (1.0f - (damping * Time.deltaTime));
         }

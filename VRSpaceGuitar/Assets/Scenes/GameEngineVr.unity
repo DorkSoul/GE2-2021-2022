@@ -1665,6 +1665,11 @@ PrefabInstance:
       propertyPath: followObject
       value: 
       objectReference: {fileID: 1814975098}
+    - target: {fileID: 7721960461443992171, guid: 8e18f0c6b074c28469a3ea3d658f9128,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7721960462529368855, guid: 8e18f0c6b074c28469a3ea3d658f9128,
         type: 3}
       propertyPath: followObject
@@ -1675,6 +1680,11 @@ PrefabInstance:
       propertyPath: followObject
       value: 
       objectReference: {fileID: 1802171028}
+    - target: {fileID: 7721960463313606011, guid: 8e18f0c6b074c28469a3ea3d658f9128,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7721960463202334487, guid: 8e18f0c6b074c28469a3ea3d658f9128, type: 3}
     m_AddedGameObjects: []
