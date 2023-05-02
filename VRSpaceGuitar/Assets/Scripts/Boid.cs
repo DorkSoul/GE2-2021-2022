@@ -46,7 +46,7 @@ public class Boid : MonoBehaviour
         // Add the Seek behavior
         this.behaviours.Add(GetComponent<Seek>());
     }
-
+    
     public Vector3 SeekForce(Vector3 target)
     {
         Vector3 desired = target - transform.position;

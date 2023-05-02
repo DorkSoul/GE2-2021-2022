@@ -4,7 +4,8 @@ using System.Text;
 using UnityEngine;
 
 public class ObstacleAvoidance : SteeringBehaviour
-{
+{   
+    //variables
     public float scale = 4.0f;
     public float forwardFeelerDepth = 30;
     public float sideFeelerDepth = 15;
@@ -27,8 +28,10 @@ public class ObstacleAvoidance : SteeringBehaviour
 
     public LayerMask mask = -1;
 
+    //on enable is called when the script is enabled
     public void OnEnable()
     {
+        // start the coroutines
         StartCoroutine(UpdateFrontFeelers());
         StartCoroutine(UpdateSideFeelers());
     }
@@ -116,12 +119,12 @@ public class ObstacleAvoidance : SteeringBehaviour
     {
         Vector3 force = Vector3.zero;
 
-        // Return zero force if the collided object is part of the creature's hierarchy
+        // Return zero force if the collided object is part of the creature's hierarchy or in the fence
         if (info.collider != null && (info.collider.CompareTag("Food") || IsDescendantOfCreature(info.collider.transform) || info.collider.CompareTag("Fence")))
         {
             return force;
         }
-
+        
         Vector3 fromTarget = fromTarget = transform.position - info.point;
         float dist = Vector3.Distance(transform.position, info.point);
 
@@ -144,6 +147,7 @@ public class ObstacleAvoidance : SteeringBehaviour
         return force;
     }
 
+    // Returns true if the transform is a descendant of the creature
     bool IsDescendantOfCreature(Transform t)
     {
         if (t == null)
