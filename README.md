@@ -98,4 +98,4 @@ Xr plugin management
 terrain package
 This is a youtube video of the project:
 
-[![YouTube](http://img.youtube.com/vi/EQzX3p8FefY/0.jpg)](https://www.youtube.com/watch?v=EQzX3p8FefY)
+[![YouTube]](https://youtu.be/JcADIC3XaBs)
