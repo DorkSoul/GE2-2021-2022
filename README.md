@@ -29,7 +29,6 @@ We have followed a tutorial to get the legs to move in accordance to the rate of
 | Class/assets 				| Source |
 |---------------------------|-----------|
 | Arrive.cs 	            | Self written edits |
-| Seek.cs 	            	| Self written edits |
 | Boid.cs			        | Self written edits |
 | Seek.cs		            | Self written edits |
 | Fence.cs	                | Self written |

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Wander : SteeringBehaviour
 {
-    //variable
     public string foodTag = "Food";
     public float circleDistance = 20f;
     public float circleRadius = 10f;
@@ -18,17 +17,13 @@ public class Wander : SteeringBehaviour
     private Dictionary<string, List<GameObject>> collectedBodyParts = new Dictionary<string, List<GameObject>>();
     void Start()
     {
-        // Set the initial target to a random position within a circle
         wanderTarget = Random.insideUnitSphere * circleRadius;
-        //get seek and obstacle avoidance
         seek = GetComponent<Seek>();
         obstacleAvoidance = GetComponent<ObstacleAvoidance>();
     }
 
-    //calculate the force
     public override Vector3 Calculate()
-    {   
-        // Reset the force
+    {
         Vector3 force = Vector3.zero;
 
         // Calculate obstacle avoidance force
@@ -42,27 +37,22 @@ public class Wander : SteeringBehaviour
         }
         else
         {
-            // Calculate wander force
+            // Calculate wander force as before
             Vector3 circleCenter = boid.velocity.normalized * circleDistance;
-            // Restrict the Y axis
-            circleCenter.y = 0; 
+            circleCenter.y = 0; // Restrict the Y axis
 
-            // Calculate the displacement force
             wanderTarget += new Vector3(
                 Random.Range(-1f, 1f) * wanderJitter,
-                0,
+                0, // Restrict the Y axis
                 Random.Range(-1f, 1f) * wanderJitter);
 
-            // Normalize wanderTarget
             wanderTarget.Normalize();
-            // Multiply wanderTarget by the circle radius
             wanderTarget *= circleRadius;
 
             // Constrain wanderTarget within the desired range (-20 to 20)
             wanderTarget.x = Mathf.Clamp(wanderTarget.x, -20, 20);
             wanderTarget.z = Mathf.Clamp(wanderTarget.z, -20, 20);
 
-            // Calculate the force
             force = circleCenter + wanderTarget;
             force *= this.wanderForce;
         }
@@ -73,18 +63,13 @@ public class Wander : SteeringBehaviour
         return force;
     }
 
-    // on trigger enter
     public void OnTriggerEnter(Collider other)
     {
-        // If the other object has the Food tag
         if (other.gameObject.CompareTag("Food"))
         {
-            // Get the Food script from the other object
             Food foodScript = other.gameObject.GetComponent<Food>();
-            // If the Food script exists
             if (foodScript != null)
             {
-                // Get the body parts from the Food script
                 Dictionary<string, List<int>> bodyParts = foodScript.GetBodyParts();
 
                 // Select a random body part type (Legs, Head, Arms, or Chest)
@@ -98,7 +83,6 @@ public class Wander : SteeringBehaviour
                 int randomIndex = Random.Range(0, prefabs.Count);
                 GameObject randomPrefab = prefabs[randomIndex];
 
-                // Eat the food
                 EatFood(randomBodyPartType, randomPrefab);
 
                 Destroy(other.gameObject);
@@ -106,20 +90,15 @@ public class Wander : SteeringBehaviour
         }
     }
 
-    //eat food
     void EatFood(string bodyPart, GameObject prefab)
     {
-        // If the collectedBodyParts dictionary doesn't contain the body part type
         if (!collectedBodyParts.ContainsKey(bodyPart))
         {
-            // Add the body part type to the dictionary
             collectedBodyParts.Add(bodyPart, new List<GameObject>());
         }
 
-        // Add the body part to the list of collected body parts
         collectedBodyParts[bodyPart].Add(prefab);
-        
-        // If the number of collected body parts of this type is 4
+
         if (collectedBodyParts[bodyPart].Count >= 4)
         {
             // Output the name of the body part being attached
@@ -133,24 +112,19 @@ public class Wander : SteeringBehaviour
         }
     }
 
-    //attach body part
     void AttachBodyPart(string bodyPart, GameObject prefab)
     {
         // Find the existing body part with the same tag
         Transform existingBodyPart = null;
-        // Loop through all the children of this game object
         foreach (Transform child in transform.GetComponentsInChildren<Transform>())
         {
-            // If the child has the same tag as the body part
             if (child.CompareTag(bodyPart))
             {
-                // Store the child as the existing body part
                 existingBodyPart = child;
                 break;
             }
         }
 
-        // If an existing body part was found
         if (existingBodyPart != null)
         {
             // Store the position, rotation, and parent of the existing body part
@@ -209,7 +183,6 @@ public class Wander : SteeringBehaviour
             }
         }
     }
-    //set material
     void SetMaterialInChildren(GameObject parent, Material material)
     {
         Renderer[] renderers = parent.GetComponentsInChildren<Renderer>();
@@ -218,7 +191,6 @@ public class Wander : SteeringBehaviour
             renderer.material = material;
         }
     }
-    //play sound
     public void playSound()
     {
         Player.Play();

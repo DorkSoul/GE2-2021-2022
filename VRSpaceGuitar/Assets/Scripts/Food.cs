@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Food : MonoBehaviour
 {
-    // body parts
+    [Header("Body Part Prefabs")]
     public GameObject[] LegsPrefab;
     public GameObject[] HeadPrefab;
     public GameObject[] ArmsPrefab;
     public GameObject[] ChestPrefab;
 
-    // variables
+    [Header("Hover and Rotation Settings")]
     public float hoverHeight = 2f;
     public float rotationSpeed = 10f;
     public float hoverAmplitude = 0.5f;
@@ -22,11 +22,9 @@ public class Food : MonoBehaviour
     private float hoverStartTime;
 
     private void Start()
-    {   
-        // Assign the body parts for each food type
+    {
         foodType = gameObject.name;
         AssignBodyParts();
-        // Set the hover start time and initial position
         hoverStartTime = Time.time;
         initialXPosition = transform.position.x;
         initialZPosition = transform.position.z;
@@ -35,27 +33,20 @@ public class Food : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Hover and rotate
         HoverAndRotate();
     }
 
-    // Hover and rotate
     void HoverAndRotate()
     {
         // Keep the object upright
         transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
 
-        // raycast down to determine the ground height
+        // Hover 1 unit above the ground
         RaycastHit hit;
-        // if the raycast hits the ground then hover
         if (Physics.Raycast(transform.position, Vector3.down, out hit))
-        {   
-            //distance to ground
+        {
             float distanceToGround = hit.distance;
-
-            //hover offset
             float hoverOffset = hoverAmplitude * Mathf.Sin(hoverFrequency * (Time.time - hoverStartTime));
-            //set the position of the object
             transform.position = new Vector3(initialXPosition, hit.point.y + hoverHeight + hoverOffset, initialZPosition);
         }
 
@@ -63,7 +54,6 @@ public class Food : MonoBehaviour
         transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime, Space.World);
     }
 
-    // Assign the body parts for each food type
     void AssignBodyParts()
     {
         if (foodType.Contains("beetroot"))
@@ -124,17 +114,13 @@ public class Food : MonoBehaviour
         }
     }
 
-    // Get the body part prefabs
     public List<GameObject> GetBodyPartPrefabs(string bodyPart)
     {
-        // Check if the body part exists
         if (bodyParts.ContainsKey(bodyPart))
         {
-            // Get the indices of the body part prefabs
             List<int> indices = bodyParts[bodyPart];
             List<GameObject> prefabs = new List<GameObject>();
 
-            //switch statement to get the prefabs
             switch (bodyPart)
             {
                 case "Leg":
@@ -163,20 +149,16 @@ public class Food : MonoBehaviour
                     break;
             }
 
-            // Return the prefabs
             return prefabs;
         }
         else
         {
-            // Return null if the body part does not exist
             return null;
         }
     }
 
-    //get the body parts dictionary
     public Dictionary<string, List<int>> GetBodyParts()
-    {   
-        //return the body parts dictionary
+    {
         return bodyParts;
     }
 }
